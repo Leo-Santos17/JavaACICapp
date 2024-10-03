@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package interfaces;
 
 import java.awt.CardLayout;
@@ -32,19 +28,13 @@ public class view extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        rSPanelImage1 = new rojerusan.RSPanelImage();
         jPanel2 = new javax.swing.JPanel();
         Saida = new javax.swing.JLabel();
         CPlembrarsenha = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        CPsenha = new app.bolivia.swing.JCTextField();
-        CPlogin = new app.bolivia.swing.JCTextField();
-        Cadastro = new rojerusan.RSMaterialButtonCircle();
-        Loguin = new rojerusan.RSMaterialButtonCircle();
         jLabel11 = new javax.swing.JLabel();
-        rSPanelImage2 = new rojerusan.RSPanelImage();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -63,21 +53,6 @@ public class view extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 51, 51));
         jLabel5.setText("ACIC");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        rSPanelImage1.setImagen(new javax.swing.ImageIcon(getClass().getResource("/imagens/undraw_building_websites_i78t.png"))); // NOI18N
-
-        javax.swing.GroupLayout rSPanelImage1Layout = new javax.swing.GroupLayout(rSPanelImage1);
-        rSPanelImage1.setLayout(rSPanelImage1Layout);
-        rSPanelImage1Layout.setHorizontalGroup(
-            rSPanelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 890, Short.MAX_VALUE)
-        );
-        rSPanelImage1Layout.setVerticalGroup(
-            rSPanelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(rSPanelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 72, 890, 530));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1000, 870));
 
@@ -123,66 +98,11 @@ public class view extends javax.swing.JFrame {
         jLabel9.setFocusTraversalPolicyProvider(true);
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 560, 50, 50));
 
-        CPsenha.setBackground(new java.awt.Color(102, 102, 225));
-        CPsenha.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
-        CPsenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        CPsenha.setPlaceholder("Enter password...");
-        CPsenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CPsenhaActionPerformed(evt);
-            }
-        });
-        jPanel2.add(CPsenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 270, -1));
-
-        CPlogin.setBackground(new java.awt.Color(102, 102, 225));
-        CPlogin.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
-        CPlogin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        CPlogin.setPlaceholder("Enter username...");
-        CPlogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CPloginActionPerformed(evt);
-            }
-        });
-        jPanel2.add(CPlogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 270, -1));
-
-        Cadastro.setBackground(new java.awt.Color(153, 153, 225));
-        Cadastro.setText("Cadastro");
-        Cadastro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastroActionPerformed(evt);
-            }
-        });
-        jPanel2.add(Cadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 480, 320, 60));
-
-        Loguin.setBackground(new java.awt.Color(255, 51, 51));
-        Loguin.setText("login");
-        Loguin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoguinActionPerformed(evt);
-            }
-        });
-        jPanel2.add(Loguin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, 320, 60));
-
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Secure_50px (1).png"))); // NOI18N
         jLabel11.setDoubleBuffered(true);
         jLabel11.setFocusCycleRoot(true);
         jLabel11.setFocusTraversalPolicyProvider(true);
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 50, 50));
-
-        rSPanelImage2.setImagen(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Account_50px.png"))); // NOI18N
-
-        javax.swing.GroupLayout rSPanelImage2Layout = new javax.swing.GroupLayout(rSPanelImage2);
-        rSPanelImage2.setLayout(rSPanelImage2Layout);
-        rSPanelImage2Layout.setHorizontalGroup(
-            rSPanelImage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-        rSPanelImage2Layout.setVerticalGroup(
-            rSPanelImage2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(rSPanelImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 50, 50));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 0, 550, 880));
 
@@ -206,11 +126,7 @@ public class view extends javax.swing.JFrame {
     }//GEN-LAST:event_CadastroActionPerformed
 
     private void LoguinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoguinActionPerformed
-      if(CPlogin.getText().toString().equals("usuario")&& CPsenha.getText().toString().equals("1234")){
-        JOptionPane.showMessageDialog(null, "Bem Vindo !");
-      }else{
-       JOptionPane.showMessageDialog(null, "usuario negado !");
-      }
+      
     }//GEN-LAST:event_LoguinActionPerformed
 
     private void CPlembrarsenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CPlembrarsenhaMouseClicked
@@ -254,10 +170,6 @@ public class view extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CPlembrarsenha;
-    private app.bolivia.swing.JCTextField CPlogin;
-    private app.bolivia.swing.JCTextField CPsenha;
-    private rojerusan.RSMaterialButtonCircle Cadastro;
-    private rojerusan.RSMaterialButtonCircle Loguin;
     private javax.swing.JLabel Saida;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -267,7 +179,5 @@ public class view extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private rojerusan.RSPanelImage rSPanelImage1;
-    private rojerusan.RSPanelImage rSPanelImage2;
     // End of variables declaration//GEN-END:variables
 }
