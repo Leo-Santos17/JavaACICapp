@@ -28,6 +28,7 @@ public class view extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         Saida = new javax.swing.JLabel();
         CPlembrarsenha = new javax.swing.JLabel();
@@ -35,6 +36,7 @@ public class view extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -53,6 +55,9 @@ public class view extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 51, 51));
         jLabel5.setText("ACIC");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/undraw_building_websites_i78t.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1000, 870));
 
@@ -102,7 +107,10 @@ public class view extends javax.swing.JFrame {
         jLabel11.setDoubleBuffered(true);
         jLabel11.setFocusCycleRoot(true);
         jLabel11.setFocusTraversalPolicyProvider(true);
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 50, 50));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 50, 50));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Account_50px.png"))); // NOI18N
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 0, 550, 880));
 
@@ -171,8 +179,10 @@ public class view extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CPlembrarsenha;
     private javax.swing.JLabel Saida;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
