@@ -10,9 +10,8 @@ Esse Commit é separado do restante para emergências:
 
 * IDE: NetBeans
 
-## Como importar a biblioteca
-
-![][https://youtu.be/u0rKzvETito]
+## Como importar a biblioteca (VIDEO)
+[![Youtube](https://i1.ytimg.com/vi/u0rKzvETito/hqdefault.jpg)](https://www.youtube.com/watch?v=u0rKzvETito)
 
 OBS: Sem ela o código não funciona
 
