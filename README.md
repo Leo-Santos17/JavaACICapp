@@ -8,9 +8,8 @@ Esse Commit é separado do restante para emergências:
 * Banco de dados (SGDB): PostGreSQL
 * IDE: NetBeans
 
-## Como importar a biblioteca
-
-![][https://youtu.be/u0rKzvETito]
+## Como importar a biblioteca (VIDEO)
+[![Youtube](https://i1.ytimg.com/vi/u0rKzvETito/hqdefault.jpg)](https://www.youtube.com/watch?v=u0rKzvETito)
 
 OBS: Sem ela o código não funciona
 
@@ -23,3 +22,4 @@ OBS: Sem ela o código não funciona
 * Tabela acic_table (Opcional, só alterar no código)
     * OBS: **AS COLUNAS DEVEM SER OBRIGATORIAMENTE ASSIM**
     * Colunas: id(PK), service(VARCHAR(60)), descri(VARCHAR(300)), data(Date)
+ 
