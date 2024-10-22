@@ -5,6 +5,7 @@
 package interfaces;
 
 import java.awt.CardLayout;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,32 +40,40 @@ public class view extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        CPsenha = new app.bolivia.swing.JCTextField();
-        CPlogin = new app.bolivia.swing.JCTextField();
         Cadastro = new rojerusan.RSMaterialButtonCircle();
-        Loguin = new rojerusan.RSMaterialButtonCircle();
-        jLabel11 = new javax.swing.JLabel();
+        Login = new rojerusan.RSMaterialButtonCircle();
         rSPanelImage2 = new rojerusan.RSPanelImage();
+        jLabel12 = new javax.swing.JLabel();
+        CPlogin = new javax.swing.JTextField();
+        CPsenha = new javax.swing.JPasswordField();
+        jLabel10 = new javax.swing.JLabel();
+        disable1 = new javax.swing.JLabel();
+        olho = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 102, 225));
+        jLabel2.setForeground(new java.awt.Color(204, 255, 204));
         jLabel2.setText("DESENVOLVIMENTO");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel5.setForeground(new java.awt.Color(204, 255, 102));
         jLabel5.setText("ACIC");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        rSPanelImage1.setImagen(new javax.swing.ImageIcon(getClass().getResource("/imagens/undraw_building_websites_i78t.png"))); // NOI18N
+        rSPanelImage1.setImagen(new javax.swing.ImageIcon(getClass().getResource("/imagens/9204943-design-de-moderno-de-conta-de-phishing-ilustracao-plana-vetor.jpg"))); // NOI18N
 
         javax.swing.GroupLayout rSPanelImage1Layout = new javax.swing.GroupLayout(rSPanelImage1);
         rSPanelImage1.setLayout(rSPanelImage1Layout);
@@ -77,11 +86,11 @@ public class view extends javax.swing.JFrame {
             .addGap(0, 530, Short.MAX_VALUE)
         );
 
-        jPanel1.add(rSPanelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 72, 890, 530));
+        jPanel1.add(rSPanelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 890, 530));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1000, 870));
 
-        jPanel2.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel2.setBackground(new java.awt.Color(153, 255, 153));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Saida.setBackground(new java.awt.Color(255, 255, 255));
@@ -114,67 +123,41 @@ public class view extends javax.swing.JFrame {
                 CPesqueceusenhaMouseClicked(evt);
             }
         });
-        jPanel2.add(CPesqueceusenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 580, 160, -1));
+        jPanel2.add(CPesqueceusenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 610, 160, -1));
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Bem Vindo !");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 72, 170, 40));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 170, 40));
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 17)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("username:");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 80, -1));
+        jLabel8.setText("senha");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 80, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Forgot_Password_50px_4.png"))); // NOI18N
         jLabel9.setDoubleBuffered(true);
         jLabel9.setFocusCycleRoot(true);
         jLabel9.setFocusTraversalPolicyProvider(true);
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 560, 50, 50));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 590, 50, 50));
 
-        CPsenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        CPsenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        CPsenha.setPlaceholder("Enter password...");
-        CPsenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CPsenhaActionPerformed(evt);
-            }
-        });
-        jPanel2.add(CPsenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 270, -1));
-
-        CPlogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        CPlogin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        CPlogin.setPlaceholder("Enter username...");
-        CPlogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CPloginActionPerformed(evt);
-            }
-        });
-        jPanel2.add(CPlogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 270, -1));
-
-        Cadastro.setBackground(new java.awt.Color(153, 153, 225));
+        Cadastro.setBackground(new java.awt.Color(204, 255, 153));
         Cadastro.setText("Cadastro");
         Cadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CadastroActionPerformed(evt);
             }
         });
-        jPanel2.add(Cadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 480, 320, 60));
+        jPanel2.add(Cadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 510, 320, 60));
 
-        Loguin.setBackground(new java.awt.Color(255, 51, 51));
-        Loguin.setText("login");
-        Loguin.addActionListener(new java.awt.event.ActionListener() {
+        Login.setBackground(new java.awt.Color(102, 255, 153));
+        Login.setText("login");
+        Login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoguinActionPerformed(evt);
+                LoginActionPerformed(evt);
             }
         });
-        jPanel2.add(Loguin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, 320, 60));
-
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Secure_50px (1).png"))); // NOI18N
-        jLabel11.setDoubleBuffered(true);
-        jLabel11.setFocusCycleRoot(true);
-        jLabel11.setFocusTraversalPolicyProvider(true);
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 50, 50));
+        jPanel2.add(Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, 320, 60));
 
         rSPanelImage2.setImagen(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Account_50px.png"))); // NOI18N
 
@@ -191,7 +174,60 @@ public class view extends javax.swing.JFrame {
 
         jPanel2.add(rSPanelImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 50, 50));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 0, 550, 880));
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Secure_50px (1).png"))); // NOI18N
+        jLabel12.setDoubleBuffered(true);
+        jLabel12.setFocusCycleRoot(true);
+        jLabel12.setFocusTraversalPolicyProvider(true);
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 50, 50));
+
+        CPlogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CPloginActionPerformed(evt);
+            }
+        });
+        CPlogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CPloginKeyPressed(evt);
+            }
+        });
+        jPanel2.add(CPlogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 210, 30));
+
+        CPsenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CPsenhaActionPerformed(evt);
+            }
+        });
+        CPsenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CPsenhaKeyPressed(evt);
+            }
+        });
+        jPanel2.add(CPsenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 210, 30));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 0, 17)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("usuario");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 80, -1));
+
+        disable1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Invisible_2.png"))); // NOI18N
+        disable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        disable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                disable1MouseClicked(evt);
+            }
+        });
+        jPanel2.add(disable1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 30, 40));
+
+        olho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Eye_1.png"))); // NOI18N
+        olho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        olho.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                olhoMouseClicked(evt);
+            }
+        });
+        jPanel2.add(olho, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 30, 40));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 10, 550, 880));
 
         setSize(new java.awt.Dimension(1507, 692));
         setLocationRelativeTo(null);
@@ -201,26 +237,18 @@ public class view extends javax.swing.JFrame {
        System.exit(0);
     }//GEN-LAST:event_SaidaMouseClicked
 
-    private void CPsenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPsenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CPsenhaActionPerformed
-
-    private void CPloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPloginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CPloginActionPerformed
-
     private void CadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroActionPerformed
 new IntCADASTRO().setVisible(true);         
     }//GEN-LAST:event_CadastroActionPerformed
 
-    private void LoguinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoguinActionPerformed
+    private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
       if(CPlogin.getText().toString().equals("usuario")&& CPsenha.getText().toString().equals("1234")){
         JOptionPane.showMessageDialog(null, "Bem Vindo !");
-        new TelaPrincipal().setVisible(true);  
+        new tela_interativa().setVisible(true);  
       }else{
        JOptionPane.showMessageDialog(null, "usuario negado !");
       }
-    }//GEN-LAST:event_LoguinActionPerformed
+    }//GEN-LAST:event_LoginActionPerformed
 
     private void CPesqueceusenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CPesqueceusenhaMouseClicked
          new ResetSenha().setVisible(true); 
@@ -229,6 +257,60 @@ new IntCADASTRO().setVisible(true);
     private void CPesqueceusenhaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_CPesqueceusenhaAncestorAdded
         
     }//GEN-LAST:event_CPesqueceusenhaAncestorAdded
+
+    private void CPloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPloginActionPerformed
+      
+      
+    }//GEN-LAST:event_CPloginActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        for (double i = 0.0; i <= 1.0; i = i+0.1){
+        String val = i+ "";
+        float f = Float.valueOf(val);
+        this.setOpacity(f);
+        try{
+        Thread.sleep(50);
+        }catch(Exception e ){
+                }
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void disable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_disable1MouseClicked
+     CPsenha.setEchoChar((char)0);
+     disable1.setVisible(false);
+     disable1.setEnabled(false);
+     olho.setEnabled(true);
+     olho.setEnabled(true);
+        
+    }//GEN-LAST:event_disable1MouseClicked
+
+    private void olhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_olhoMouseClicked
+    CPsenha.setEchoChar((char)8226);
+     disable1.setVisible(true);
+     disable1.setEnabled(true);
+     olho.setEnabled(false);
+     olho.setEnabled(false);
+        
+    }//GEN-LAST:event_olhoMouseClicked
+
+    private void CPsenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CPsenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CPsenhaActionPerformed
+
+    private void CPloginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CPloginKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+           CPsenha.requestFocus();
+       
+       }
+    }//GEN-LAST:event_CPloginKeyPressed
+
+    private void CPsenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CPsenhaKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+           Login.requestFocus();
+       
+       }
+        
+    }//GEN-LAST:event_CPsenhaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -267,12 +349,14 @@ new IntCADASTRO().setVisible(true);
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CPesqueceusenha;
-    private app.bolivia.swing.JCTextField CPlogin;
-    private app.bolivia.swing.JCTextField CPsenha;
+    private javax.swing.JTextField CPlogin;
+    private javax.swing.JPasswordField CPsenha;
     private rojerusan.RSMaterialButtonCircle Cadastro;
-    private rojerusan.RSMaterialButtonCircle Loguin;
+    private rojerusan.RSMaterialButtonCircle Login;
     private javax.swing.JLabel Saida;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel disable1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -280,7 +364,12 @@ new IntCADASTRO().setVisible(true);
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel olho;
     private rojerusan.RSPanelImage rSPanelImage1;
     private rojerusan.RSPanelImage rSPanelImage2;
     // End of variables declaration//GEN-END:variables
+
+    private void initcomponents() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
