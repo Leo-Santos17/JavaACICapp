@@ -6,6 +6,12 @@ package interfaces;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
 
 /**
  *
@@ -13,11 +19,29 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
+    private Connection conn;
+    // Variáveis Banco de dados - PostGreSQL
+    private static final String table = "acic_table";
+    private static final String database = "acicDATA";
+    private static final String URL = "jdbc:postgresql://localhost:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
+    private static final String USER = "acicUSER";  // Usuário do banco
+    private static final String PASSWORD = "123";
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         initComponents();
+        // Conexão com banco de dados
+        // PostGreSQL Connection
+        try {
+            // Estabelece a conexão com o banco
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Conectado ao banco de dados com sucesso!");
+            carregarServicos();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao conectar ao banco de dados");
+        }
     }
 
     /**
@@ -126,6 +150,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel5.setText("ID");
 
+        jvID.setEditable(false);
         jvID.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jvID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,18 +305,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jvdescricaoActionPerformed
 
     private void CadastrarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarServicoActionPerformed
-       DefaultTableModel tbprodutos = (DefaultTableModel) TBservicos.getModel();
-       Object [] dados = {jvID.getText(),jvservico.getText(),jvdescricao.getText(),jvdata.getText()}; 
-        tbprodutos.addRow(dados);
+        cadastrarServico(jvservico.getText(),jvdescricao.getText());
+        carregarServicos();
     }//GEN-LAST:event_CadastrarServicoActionPerformed
 
     private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
-      if(TBservicos.getSelectedRow() != -1){
-        DefaultTableModel tbprodutos = (DefaultTableModel) TBservicos.getModel();
-       tbprodutos.removeRow(TBservicos.getSelectedRow());
-      }else {
-          JOptionPane.showMessageDialog(null,"Selecione um serviço para excluir!");
-      }
+        if(TBservicos.getSelectedRow() != -1)
+        {
+          int pos = TBservicos.getSelectedRow();
+          try
+          {
+             String idValueSTR = TBservicos.getValueAt(pos,0).toString();
+             int idValue = Integer.parseInt(idValueSTR);
+             excluirCadastro(idValue);
+
+          }
+          catch(Exception e)
+          {
+              System.out.println("Erro Botão");
+          }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Selecione um serviço para excluir!");
+        }
     }//GEN-LAST:event_excluirActionPerformed
 
     private void jvIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jvIDActionPerformed
@@ -299,11 +336,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jvIDActionPerformed
 
     private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
-       if(TBservicos.getSelectedRow() != -1){
-        TBservicos.setValueAt(jvID.getText(), TBservicos.getSelectedRow() , 0);
-        TBservicos.setValueAt(jvservico.getText(), TBservicos.getSelectedRow() , 1);
-        TBservicos.setValueAt(jvdescricao.getText(), TBservicos.getSelectedRow() , 2);
-        TBservicos.setValueAt(jvdata.getText(), TBservicos.getSelectedRow() , 3);
+        if(TBservicos.getSelectedRow() != -1){
+            int pos = TBservicos.getSelectedRow();
+            try{
+               String idValueSTR = TBservicos.getValueAt(pos,0).toString();
+               int idValue = Integer.parseInt(idValueSTR);
+               atualizarCadastro(idValue);
+            } catch(Exception e) {
+                System.out.println("Erro Botão");
+                e.printStackTrace();
+            }
        }
     }//GEN-LAST:event_atualizarActionPerformed
 
@@ -326,6 +368,125 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
     }
 
+    
+    public Connection getConnection() {
+        return conn;
+    }
+    
+    // ADD Database PostGreSQL
+    public void cadastrarServico(String servico, String descricao)
+    {
+        // Ajustar nome das colunas se necessário
+        String sql = "INSERT INTO "+table+" (service, descri, data) VALUES "
+                + "(?, ?, CURRENT_DATE)";
+        
+        // Incremento
+        try(PreparedStatement pst = conn.prepareStatement(sql))
+        {
+           pst.setString(1, servico); // Primeiro "?" é o nome de serviço
+           pst.setString(2, descricao); // Segundo "?" é a descrição
+            
+            int rowsAffected = pst.executeUpdate();
+            
+            if(rowsAffected>0)
+            {
+                System.out.println("Serviço inserido com sucesso");
+            } 
+            else
+            {
+                System.out.println("Erro ai inserir serviço.");
+            }
+        } 
+        catch (SQLException e)
+        {
+            System.out.println("Erro ao inserir serviço");
+            e.printStackTrace();
+        }
+    }
+    
+    public void excluirCadastro(int id)
+    {
+        // Ajustar nome da coluna se necessário
+        String sql = "DELETE FROM "+table+" WHERE id = ?";
+        try (PreparedStatement pst = conn.prepareStatement(sql)) {
+            // Substitui o placeholder "?" pelo valor do id
+            pst.setInt(1, id);
+            // Verifica se alteração foi concluida
+            int rowsAffected = pst.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Serviço excluído com sucesso!");
+            } else {
+                System.out.println("Erro ao excluir serviço.");
+            }
+            
+            // Atualizar planilha
+            carregarServicos();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao excluir serviço.");
+        }
+    }
+    
+    public void atualizarCadastro(int id)
+    {
+        // Ajustar nome das colunas se necessário
+        String sql = "UPDATE "+table+" "
+                + "SET service = ?, descri = ?, data = ?"
+                + " WHERE id = ?";
+        java.sql.Date date;
+        
+        // UPDATE
+        try (PreparedStatement pst = conn.prepareStatement(sql)) {
+            date = java.sql.Date.valueOf(jvdata.getText());
+            // Substitui o placeholder "?" pelo valor do i
+            pst.setInt(4, id);
+            pst.setString(1, jvservico.getText());  // Atualiza o nome do serviço
+            pst.setString(2, jvdescricao.getText()); // Atualiza a descrição
+            pst.setDate(3, date);      // Atualiza a data
+            
+            int rowsAffected = pst.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Serviço atualizar com sucesso!");
+                carregarServicos();
+            } else {
+                System.out.println("Erro ai atualizar serviço.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao atualizar serviço.");
+            e.printStackTrace();
+        }
+    }
+    
+    
+    // Atualizar tabela
+    public void carregarServicos() {
+        // Ajustar nome das colunas se necessário
+        String sql = "SELECT id, service, descri, data FROM " + table;
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql))
+        {
+            DefaultTableModel tbprodutos = (DefaultTableModel) TBservicos.getModel();
+            tbprodutos.setRowCount(0); // Limpa a tabela antes de adicionar os dados
+                
+            while (rs.next())
+            {
+                Object[] dados =
+                {
+                    rs.getInt("id"),
+                    rs.getString("service"),
+                    rs.getString("descri"),
+                    rs.getDate("data")
+                };
+                
+                tbprodutos.addRow(dados);
+            }
+        }
+        catch (SQLException e)
+        {
+            System.out.println("Erro ao carregar serviços");
+            e.printStackTrace();
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CadastrarServico;
     private rojeru_san.complementos.RSTableMetro TBservicos;
