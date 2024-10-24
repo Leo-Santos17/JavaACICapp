@@ -6,19 +6,43 @@ package interfaces;
 
 import java.awt.CardLayout;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Arthur Dias
  */
 public class view extends javax.swing.JFrame {
+    private Connection conn;
+    // Variáveis Banco de dados - PostGreSQL
+    public static String iddd;
+    public static String idddd;
+    private static final String table = "acic_cads";
+    private static final String database = "acicDATA";
+    private static final String URL = "jdbc:postgresql://localhost:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
+    private static final String USER = "acicUSER";  // Usuário do banco
+    private static final String PASSWORD = "123";
 
     /**
      * Creates new form view
      */
     public view() {
         initComponents();
+        try {
+            // Estabelece a conexão com o banco
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Conectado ao banco de dados com sucesso!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao conectar ao banco de dados");
+        }
     }
 
     /**
@@ -238,20 +262,22 @@ public class view extends javax.swing.JFrame {
     }//GEN-LAST:event_SaidaMouseClicked
 
     private void CadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroActionPerformed
-new IntCADASTRO().setVisible(true);         
+        System.out.println("Cadastro");
+        //new IntCADASTRO().setVisible(true);         
     }//GEN-LAST:event_CadastroActionPerformed
 
     private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
-      if(CPlogin.getText().toString().equals("usuario")&& CPsenha.getText().toString().equals("1234")){
-        JOptionPane.showMessageDialog(null, "Bem Vindo !");
-        new tela_interativa().setVisible(true);  
-      }else{
-       JOptionPane.showMessageDialog(null, "usuario negado !");
-      }
+        System.out.println("Login");
+        if(checarLogin(CPlogin.getText().toString(), CPsenha.getText().toString()))
+        {
+            new tela_interativa().setVisible(true);
+            setVisible(false);
+        }
     }//GEN-LAST:event_LoginActionPerformed
 
     private void CPesqueceusenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CPesqueceusenhaMouseClicked
-         new ResetSenha().setVisible(true); 
+         //new ResetSenha().setVisible(true);
+         System.out.println("Esqueci");
     }//GEN-LAST:event_CPesqueceusenhaMouseClicked
 
     private void CPesqueceusenhaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_CPesqueceusenhaAncestorAdded
@@ -312,15 +338,53 @@ new IntCADASTRO().setVisible(true);
         
     }//GEN-LAST:event_CPsenhaKeyPressed
 
+    public boolean checarLogin(String usuario, String senha) {
+        // Inicializa uma variável boolean para controlar o status do login
+        boolean check = false;
+
+        // Define a consulta SQL para selecionar o id, senha e usuário da tabela
+        String sql = "SELECT id, senha, usuar FROM " + table;
+
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+            // Executa a consulta e itera sobre os resultados
+            while (rs.next()) {
+                // Verifica se o usuário encontrado na base de dados corresponde ao usuário informado
+                if (rs.getString("usuar").equals(usuario)) {
+                    System.out.println("Existe esse usuário");
+
+                    // Verifica se a senha informada corresponde à senha armazenada
+                    if (rs.getString("senha").equals(senha)) {
+                        System.out.println("Login Efetuado com sucesso");
+                        check = true; // Marca que o login foi bem-sucedido
+                        JOptionPane.showMessageDialog(null, "Seja bem-vindo");
+                        iddd = rs.getString("id");
+                        return true;
+                    } else {
+                        // Caso a senha não corresponda, exibe mensagem de erro
+                        JOptionPane.showMessageDialog(null, "usuario negado !");
+                        check = true; // Marca que o usuário foi encontrado, mas a senha está incorreta
+                    }
+                }
+            }
+
+            // Se nenhum usuário foi encontrado ou o login não foi bem-sucedido
+            if (!check) {
+                JOptionPane.showMessageDialog(null, "usuario não encontrado");
+            }
+        } catch (SQLException e) {
+            // Tratamento de exceções para falhas na consulta ao banco de dados
+            System.out.println("Erro ao carregar serviços");
+            e.printStackTrace(); // Exibe a stack trace do erro
+        }
+        return false;
+    }
+
+    
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

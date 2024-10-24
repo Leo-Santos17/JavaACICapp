@@ -377,14 +377,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public void cadastrarServico(String servico, String descricao)
     {
         // Ajustar nome das colunas se necessário
-        String sql = "INSERT INTO "+table+" (service, descri, data) VALUES "
-                + "(?, ?, CURRENT_DATE)";
+        String sql = "INSERT INTO "+table+" (service, descri, data,id_cad) VALUES "
+                + "(?, ?, CURRENT_DATE,?)";
         
         // Incremento
         try(PreparedStatement pst = conn.prepareStatement(sql))
         {
            pst.setString(1, servico); // Primeiro "?" é o nome de serviço
            pst.setString(2, descricao); // Segundo "?" é a descrição
+           pst.setInt(3, Integer.parseInt(view.iddd)); // Terceiro "?" é a Referência
             
             int rowsAffected = pst.executeUpdate();
             
@@ -462,7 +463,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Atualizar tabela
     public void carregarServicos() {
         // Ajustar nome das colunas se necessário
-        String sql = "SELECT id, service, descri, data FROM " + table;
+        String sql = "SELECT id, service, descri, data FROM " + table + " WHERE id_cad="+Integer.valueOf(view.iddd);
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql))
         {
             DefaultTableModel tbprodutos = (DefaultTableModel) TBservicos.getModel();

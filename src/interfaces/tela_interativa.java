@@ -15,7 +15,9 @@ public class tela_interativa extends javax.swing.JFrame {
      */
     public tela_interativa() {
         initComponents();
+        System.out.println();
         setExtendedState(MAXIMIZED_BOTH);
+        System.out.println(view.iddd);
     }
 
     /**
