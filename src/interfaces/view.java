@@ -54,10 +54,6 @@ public class view extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        rSPanelImage1 = new rojerusan.RSPanelImage();
         jPanel2 = new javax.swing.JPanel();
         Saida = new javax.swing.JLabel();
         CPesqueceusenha = new javax.swing.JLabel();
@@ -84,36 +80,6 @@ public class view extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 255, 204));
-        jLabel2.setText("DESENVOLVIMENTO");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 255, 102));
-        jLabel5.setText("ACIC");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        rSPanelImage1.setImagen(new javax.swing.ImageIcon(getClass().getResource("/imagens/9204943-design-de-moderno-de-conta-de-phishing-ilustracao-plana-vetor.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout rSPanelImage1Layout = new javax.swing.GroupLayout(rSPanelImage1);
-        rSPanelImage1.setLayout(rSPanelImage1Layout);
-        rSPanelImage1Layout.setHorizontalGroup(
-            rSPanelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 890, Short.MAX_VALUE)
-        );
-        rSPanelImage1Layout.setVerticalGroup(
-            rSPanelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(rSPanelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 890, 530));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1000, 870));
-
         jPanel2.setBackground(new java.awt.Color(153, 255, 153));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -127,7 +93,7 @@ public class view extends javax.swing.JFrame {
                 SaidaMouseClicked(evt);
             }
         });
-        jPanel2.add(Saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, -10, 70, -1));
+        jPanel2.add(Saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 20, -1));
 
         CPesqueceusenha.setFont(new java.awt.Font("Arial", 0, 17)); // NOI18N
         CPesqueceusenha.setForeground(new java.awt.Color(255, 255, 255));
@@ -151,13 +117,13 @@ public class view extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Bem Vindo !");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 170, 40));
+        jLabel6.setText("Bem Vindo!");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 140, 40));
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 17)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("senha");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 80, -1));
+        jLabel8.setText("Senha de Acesso");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 130, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Forgot_Password_50px_4.png"))); // NOI18N
         jLabel9.setDoubleBuffered(true);
@@ -165,7 +131,7 @@ public class view extends javax.swing.JFrame {
         jLabel9.setFocusTraversalPolicyProvider(true);
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 590, 50, 50));
 
-        Cadastro.setBackground(new java.awt.Color(204, 255, 153));
+        Cadastro.setBackground(new java.awt.Color(102, 250, 72));
         Cadastro.setText("Cadastro");
         Cadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +140,7 @@ public class view extends javax.swing.JFrame {
         });
         jPanel2.add(Cadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 510, 320, 60));
 
-        Login.setBackground(new java.awt.Color(102, 255, 153));
+        Login.setBackground(new java.awt.Color(102, 149, 89));
         Login.setText("login");
         Login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,13 +162,13 @@ public class view extends javax.swing.JFrame {
             .addGap(0, 50, Short.MAX_VALUE)
         );
 
-        jPanel2.add(rSPanelImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 50, 50));
+        jPanel2.add(rSPanelImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 50, 50));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Secure_50px (1).png"))); // NOI18N
         jLabel12.setDoubleBuffered(true);
         jLabel12.setFocusCycleRoot(true);
         jLabel12.setFocusTraversalPolicyProvider(true);
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 50, 50));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 50, 50));
 
         CPlogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,7 +180,7 @@ public class view extends javax.swing.JFrame {
                 CPloginKeyPressed(evt);
             }
         });
-        jPanel2.add(CPlogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 210, 30));
+        jPanel2.add(CPlogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 210, 30));
 
         CPsenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,12 +192,12 @@ public class view extends javax.swing.JFrame {
                 CPsenhaKeyPressed(evt);
             }
         });
-        jPanel2.add(CPsenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 210, 30));
+        jPanel2.add(CPsenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 210, 30));
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 17)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("usuario");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 80, -1));
+        jLabel10.setText("Planilha");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 80, -1));
 
         disable1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Invisible_2.png"))); // NOI18N
         disable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -240,7 +206,7 @@ public class view extends javax.swing.JFrame {
                 disable1MouseClicked(evt);
             }
         });
-        jPanel2.add(disable1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 30, 40));
+        jPanel2.add(disable1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 30, 40));
 
         olho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Eye_1.png"))); // NOI18N
         olho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -249,11 +215,11 @@ public class view extends javax.swing.JFrame {
                 olhoMouseClicked(evt);
             }
         });
-        jPanel2.add(olho, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 30, 40));
+        jPanel2.add(olho, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 30, 40));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 10, 550, 880));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 880));
 
-        setSize(new java.awt.Dimension(1507, 692));
+        setSize(new java.awt.Dimension(543, 692));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -421,15 +387,11 @@ public class view extends javax.swing.JFrame {
     private javax.swing.JLabel disable1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel olho;
-    private rojerusan.RSPanelImage rSPanelImage1;
     private rojerusan.RSPanelImage rSPanelImage2;
     // End of variables declaration//GEN-END:variables
 
