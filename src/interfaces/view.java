@@ -228,8 +228,8 @@ public class view extends javax.swing.JFrame {
     }//GEN-LAST:event_SaidaMouseClicked
 
     private void CadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroActionPerformed
-        System.out.println("Cadastro");
-        //new IntCADASTRO().setVisible(true);         
+        new IntCADASTRO().setVisible(true);  
+        setVisible(false);
     }//GEN-LAST:event_CadastroActionPerformed
 
     private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed

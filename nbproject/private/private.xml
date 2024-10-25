@@ -11,6 +11,12 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/leo/codesGitHub/aciac.app/src/interfaces/IntCADASTRO.java</file>
+            <file>file:/home/leo/codesGitHub/aciac.app/src/interfaces/tela_interativa.java</file>
+            <file>file:/home/leo/codesGitHub/aciac.app/src/interfaces/TelaPrincipal.java</file>
+            <file>file:/home/leo/codesGitHub/aciac.app/src/interfaces/view.java</file>
+            <file>file:/home/leo/codesGitHub/aciac.app/src/interfaces/TelaCarregamento.java</file>
+        </group>
     </open-files>
 </project-private>

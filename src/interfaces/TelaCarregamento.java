@@ -17,7 +17,7 @@ import java.sql.SQLException;
  *
  * @author Arthur Dias
  */
-public class TelaPrincipal extends javax.swing.JFrame {
+public class TelaCarregamento extends javax.swing.JFrame {
 
     private Connection conn;
     // Variáveis Banco de dados - PostGreSQL
@@ -29,7 +29,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form TelaPrincipal
      */
-    public TelaPrincipal() {
+    public TelaCarregamento() {
         initComponents();
         // Conexão com banco de dados
         // PostGreSQL Connection
@@ -64,9 +64,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jvdata = new javax.swing.JTextField();
         jvservico = new javax.swing.JTextField();
         jvdescricao = new javax.swing.JTextField();
-        excluir = new javax.swing.JButton();
-        atualizar = new javax.swing.JButton();
-        CadastrarServico = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jvID = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
@@ -124,30 +121,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        excluir.setText("EXCLUIR");
-        excluir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        excluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                excluirActionPerformed(evt);
-            }
-        });
-
-        atualizar.setText("ATUALIZAR");
-        atualizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        atualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                atualizarActionPerformed(evt);
-            }
-        });
-
-        CadastrarServico.setText("CADASTRAR");
-        CadastrarServico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        CadastrarServico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastrarServicoActionPerformed(evt);
-            }
-        });
-
         jLabel5.setText("ID");
 
         jvID.setEditable(false);
@@ -183,13 +156,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jvdata, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(CadastrarServico)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel1))
                 .addContainerGap(405, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -209,12 +176,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(jvdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jvdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jvID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CadastrarServico)
-                    .addComponent(excluir)
-                    .addComponent(atualizar))
-                .addGap(30, 30, 30))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         TBservicos.setModel(new javax.swing.table.DefaultTableModel(
@@ -259,7 +221,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -307,50 +272,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jvdescricaoActionPerformed
 
-    private void CadastrarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarServicoActionPerformed
-        cadastrarServico(jvservico.getText(),jvdescricao.getText());
-        carregarServicos();
-    }//GEN-LAST:event_CadastrarServicoActionPerformed
-
-    private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
-        if(TBservicos.getSelectedRow() != -1)
-        {
-          int pos = TBservicos.getSelectedRow();
-          try
-          {
-             String idValueSTR = TBservicos.getValueAt(pos,0).toString();
-             int idValue = Integer.parseInt(idValueSTR);
-             excluirCadastro(idValue);
-
-          }
-          catch(Exception e)
-          {
-              System.out.println("Erro Botão");
-          }
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null,"Selecione um serviço para excluir!");
-        }
-    }//GEN-LAST:event_excluirActionPerformed
-
     private void jvIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jvIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jvIDActionPerformed
-
-    private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
-        if(TBservicos.getSelectedRow() != -1){
-            int pos = TBservicos.getSelectedRow();
-            try{
-               String idValueSTR = TBservicos.getValueAt(pos,0).toString();
-               int idValue = Integer.parseInt(idValueSTR);
-               atualizarCadastro(idValue);
-            } catch(Exception e) {
-                System.out.println("Erro Botão");
-                e.printStackTrace();
-            }
-       }
-    }//GEN-LAST:event_atualizarActionPerformed
 
     private void TBservicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicosMouseClicked
        if(TBservicos.getSelectedRow() != -1){
@@ -366,7 +290,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPrincipal().setVisible(true);
+                new TelaCarregamento().setVisible(true);
             }
         });
     }
@@ -492,10 +416,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CadastrarServico;
     private rojeru_san.complementos.RSTableMetro TBservicos;
-    private javax.swing.JButton atualizar;
-    private javax.swing.JButton excluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

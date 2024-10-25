@@ -6,7 +6,8 @@ package interfaces;
 
 /**
  *
- * @author Arthur Dias
+ * @author Arthur Dias, 
+ *         Leonardo Santos
  */
 public class tela_interativa extends javax.swing.JFrame {
 
@@ -166,7 +167,7 @@ public class tela_interativa extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        // TODO add your handling code here:
+        new TelaCarregamento().setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
