@@ -4,17 +4,38 @@
  */
 package interfaces;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  *
  * @author Arthur Dias
  */
+import javax.swing.JOptionPane;
 public class SetSenha extends javax.swing.JFrame {
 
     /**
      * Creates new form esqueceuSenha
      */
+    ResetSenha rsss = new ResetSenha();
+    private Connection conn;
+    private static final String table = "acic_cads";
+    private static final String database = "acicDATA";
+    private static final String URL = "jdbc:postgresql://localhost:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
+    private static final String USER = "acicUSER";  // Usuário do banco
+    private static final String PASSWORD = "123";
     public SetSenha() {
         initComponents();
+        try {
+            // Estabelece a conexão com o banco
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Conectado ao banco de dados com sucesso!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao conectar ao banco de dados");
+        }
     }
 
     /**
@@ -176,9 +197,54 @@ public class SetSenha extends javax.swing.JFrame {
 
     private void ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmarActionPerformed
         // TODO add your handling code here:
-        new view().setVisible(true);
+        if (atualizarCadastro())
+        {
+            JOptionPane.showMessageDialog(null,"Alterado Com sucesso");
+            new view().setVisible(true);
+            setVisible(false);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Erro");
+        }
+        
     }//GEN-LAST:event_ConfirmarActionPerformed
 
+    
+    public boolean atualizarCadastro()
+    {
+        // Ajustar nome das colunas se necessário
+        String sql = "UPDATE "+table+" "
+                + "SET senha = ?"
+                + " WHERE id = ?";
+        
+        // UPDATE
+        try (PreparedStatement pst = conn.prepareStatement(sql)) {
+            // Substitui o placeholder "?" pelo valor do i
+            //pst.setInt(4, id);
+            pst.setString(1, CNewSenha.getText());
+            pst.setInt(2, Integer.parseInt(rsss.iddd));
+            //pst.setString(1, jvservico.getText());  // Atualiza o nome do serviço
+            //pst.setString(2, jvdescricao.getText()); // Atualiza a descrição
+            //pst.setDate(3, date);      // Atualiza a data
+            
+            int rowsAffected = pst.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Serviço atualizar com sucesso!");
+            } else {
+                System.out.println("Erro ai atualizar serviço.");
+            }
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Erro ao atualizar serviço.");
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */

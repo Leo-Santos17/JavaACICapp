@@ -4,19 +4,43 @@
  */
 package interfaces;
 
+import static interfaces.view.iddd;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Arthur Dias
  */
 public class ResetSenha extends javax.swing.JFrame {
+    private Connection conn;
+    // Variáveis Banco de dados - PostGreSQL
+    public static String iddd;
+    public static String idddd;
+    private static final String table = "acic_cads";
+    private static final String database = "acicDATA";
+    private static final String URL = "jdbc:postgresql://localhost:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
+    private static final String USER = "acicUSER";  // Usuário do banco
+    private static final String PASSWORD = "123";
 
     /**
      * Creates new form esqueceuSenha
      */
     public ResetSenha() {
         initComponents();
+        try {
+            // Estabelece a conexão com o banco
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Conectado ao banco de dados com sucesso!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao conectar ao banco de dados");
+        }
     }
 
     /**
@@ -191,7 +215,17 @@ public class ResetSenha extends javax.swing.JFrame {
 
     private void EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarActionPerformed
         // TODO add your handling code here:
-        new SetSenha().setVisible(true);
+        System.out.println("Entrada");
+        if (checarLogin())
+        {
+            JOptionPane.showMessageDialog(null, "Usuário encontrado");
+            new SetSenha().setVisible(true);
+            setVisible(false);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Usuário nâo Cadastro");
+        }
     }//GEN-LAST:event_EnviarActionPerformed
 
     private void CPRESETsenha1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CPRESETsenha1KeyPressed
@@ -202,6 +236,38 @@ public class ResetSenha extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_CPRESETsenha1KeyPressed
 
+    
+    public boolean checarLogin() {
+        // Inicializa uma variável boolean para controlar o status do login
+        boolean check = false;
+
+        // Define a consulta SQL para selecionar o id, senha e usuário da tabela
+        String sql = "SELECT id, email FROM " + table;
+
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) 
+        {
+            // Executa a consulta e itera sobre os resultados
+            while (rs.next()) 
+            {
+                // Verifica se o usuário encontrado na base de dados corresponde ao usuário informado
+                if (rs.getString("email").equals(CPRESETsenha1.getText())) 
+                {
+                    System.out.println("Existe esse usuário");
+                    System.out.println("Login Efetuado com sucesso");
+                    check = true; // Marca que o login foi bem-sucedido
+                    iddd = rs.getString("id");
+                    return true;
+                }
+            }
+        } 
+        catch (SQLException e) 
+        {
+            // Tratamento de exceções para falhas na consulta ao banco de dados
+            System.out.println("Erro ao carregar serviços");
+            e.printStackTrace(); // Exibe a stack trace do erro
+        }
+        return false;
+    }
     /**
      * @param args the command line arguments
      */

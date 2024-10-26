@@ -242,7 +242,7 @@ public class view extends javax.swing.JFrame {
     }//GEN-LAST:event_LoginActionPerformed
 
     private void CPesqueceusenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CPesqueceusenhaMouseClicked
-         //new ResetSenha().setVisible(true);
+         new ResetSenha().setVisible(true);
          System.out.println("Esqueci");
     }//GEN-LAST:event_CPesqueceusenhaMouseClicked
 
@@ -259,7 +259,8 @@ public class view extends javax.swing.JFrame {
         for (double i = 0.0; i <= 1.0; i = i+0.1){
         String val = i+ "";
         float f = Float.valueOf(val);
-        this.setOpacity(f);
+        // Opacidade Retorna Erro (Incompatibilidade)
+        //this.setOpacity(f);
         try{
         Thread.sleep(50);
         }catch(Exception e ){

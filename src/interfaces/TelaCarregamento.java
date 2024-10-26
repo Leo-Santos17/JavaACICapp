@@ -58,14 +58,6 @@ public class TelaCarregamento extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jvdata = new javax.swing.JTextField();
-        jvservico = new javax.swing.JTextField();
-        jvdescricao = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jvID = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TBservicos = new rojeru_san.complementos.RSTableMetro();
@@ -92,91 +84,22 @@ public class TelaCarregamento extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(153, 194, 77));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("CADASTRO DE SERVIÇOS");
-
-        jLabel2.setText("SERVIÇO");
-
-        jLabel3.setText("DESCRIÇÃO");
-
-        jLabel4.setText("DATA");
-
-        jvdata.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jvdata.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jvdataActionPerformed(evt);
-            }
-        });
-
-        jvservico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jvservico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jvservicoActionPerformed(evt);
-            }
-        });
-
-        jvdescricao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jvdescricao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jvdescricaoActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("ID");
-
-        jvID.setEditable(false);
-        jvID.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jvID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jvIDActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Consulta de Serviços");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jvID, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel5)))
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jvservico, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jvdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(38, 38, 38)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jvdata, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel1))
-                .addContainerGap(405, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(425, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(365, 365, 365))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addGap(7, 7, 7)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jvservico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jvdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jvdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jvID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         TBservicos.setModel(new javax.swing.table.DefaultTableModel(
@@ -223,7 +146,7 @@ public class TelaCarregamento extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
@@ -260,28 +183,13 @@ public class TelaCarregamento extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jvdataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jvdataActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jvdataActionPerformed
-
-    private void jvservicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jvservicoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jvservicoActionPerformed
-
-    private void jvdescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jvdescricaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jvdescricaoActionPerformed
-
-    private void jvIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jvIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jvIDActionPerformed
-
     private void TBservicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicosMouseClicked
-       if(TBservicos.getSelectedRow() != -1){
+       if(TBservicos.getSelectedRow() != -1){/*
         jvID.setText(TBservicos.getValueAt(TBservicos.getSelectedRow(), 0).toString());
         jvservico.setText(TBservicos.getValueAt(TBservicos.getSelectedRow(), 1).toString());
         jvdescricao.setText(TBservicos.getValueAt(TBservicos.getSelectedRow(), 2).toString());
         jvdata.setText(TBservicos.getValueAt(TBservicos.getSelectedRow(), 3).toString());
+*/
          }
     }//GEN-LAST:event_TBservicosMouseClicked
 
@@ -300,91 +208,6 @@ public class TelaCarregamento extends javax.swing.JFrame {
         return conn;
     }
     
-    // ADD Database PostGreSQL
-    public void cadastrarServico(String servico, String descricao)
-    {
-        // Ajustar nome das colunas se necessário
-        String sql = "INSERT INTO "+table+" (service, descri, data,id_cad) VALUES "
-                + "(?, ?, CURRENT_DATE,?)";
-        
-        // Incremento
-        try(PreparedStatement pst = conn.prepareStatement(sql))
-        {
-           pst.setString(1, servico); // Primeiro "?" é o nome de serviço
-           pst.setString(2, descricao); // Segundo "?" é a descrição
-           pst.setInt(3, Integer.parseInt(view.iddd)); // Terceiro "?" é a Referência
-            
-            int rowsAffected = pst.executeUpdate();
-            
-            if(rowsAffected>0)
-            {
-                System.out.println("Serviço inserido com sucesso");
-            } 
-            else
-            {
-                System.out.println("Erro ai inserir serviço.");
-            }
-        } 
-        catch (SQLException e)
-        {
-            System.out.println("Erro ao inserir serviço");
-            e.printStackTrace();
-        }
-    }
-    
-    public void excluirCadastro(int id)
-    {
-        // Ajustar nome da coluna se necessário
-        String sql = "DELETE FROM "+table+" WHERE id = ?";
-        try (PreparedStatement pst = conn.prepareStatement(sql)) {
-            // Substitui o placeholder "?" pelo valor do id
-            pst.setInt(1, id);
-            // Verifica se alteração foi concluida
-            int rowsAffected = pst.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("Serviço excluído com sucesso!");
-            } else {
-                System.out.println("Erro ao excluir serviço.");
-            }
-            
-            // Atualizar planilha
-            carregarServicos();
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Erro ao excluir serviço.");
-        }
-    }
-    
-    public void atualizarCadastro(int id)
-    {
-        // Ajustar nome das colunas se necessário
-        String sql = "UPDATE "+table+" "
-                + "SET service = ?, descri = ?, data = ?"
-                + " WHERE id = ?";
-        java.sql.Date date;
-        
-        // UPDATE
-        try (PreparedStatement pst = conn.prepareStatement(sql)) {
-            date = java.sql.Date.valueOf(jvdata.getText());
-            // Substitui o placeholder "?" pelo valor do i
-            pst.setInt(4, id);
-            pst.setString(1, jvservico.getText());  // Atualiza o nome do serviço
-            pst.setString(2, jvdescricao.getText()); // Atualiza a descrição
-            pst.setDate(3, date);      // Atualiza a data
-            
-            int rowsAffected = pst.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("Serviço atualizar com sucesso!");
-                carregarServicos();
-            } else {
-                System.out.println("Erro ai atualizar serviço.");
-            }
-        } catch (SQLException e) {
-            System.out.println("Erro ao atualizar serviço.");
-            e.printStackTrace();
-        }
-    }
     
     
     // Atualizar tabela
@@ -418,19 +241,11 @@ public class TelaCarregamento extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojeru_san.complementos.RSTableMetro TBservicos;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jvID;
-    private javax.swing.JTextField jvdata;
-    private javax.swing.JTextField jvdescricao;
-    private javax.swing.JTextField jvservico;
     private rojeru_san.complementos.RSTableMetro rSTableMetro1;
     // End of variables declaration//GEN-END:variables
 }
