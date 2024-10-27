@@ -58,6 +58,7 @@ public class TelaCarregamento extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        Saida = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TBservicos = new rojeru_san.complementos.RSTableMetro();
@@ -86,20 +87,36 @@ public class TelaCarregamento extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Consulta de Serviços");
 
+        Saida.setBackground(new java.awt.Color(255, 255, 255));
+        Saida.setFont(new java.awt.Font("Arial Black", 0, 35)); // NOI18N
+        Saida.setForeground(new java.awt.Color(255, 255, 255));
+        Saida.setText("x");
+        Saida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Saida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SaidaMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(425, Short.MAX_VALUE)
+                .addContainerGap(428, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(365, 365, 365))
+                .addGap(328, 328, 328)
+                .addComponent(Saida, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Saida)
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         TBservicos.setModel(new javax.swing.table.DefaultTableModel(
@@ -193,6 +210,11 @@ public class TelaCarregamento extends javax.swing.JFrame {
          }
     }//GEN-LAST:event_TBservicosMouseClicked
 
+    private void SaidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaidaMouseClicked
+        setVisible(false);
+        new tela_interativa().setVisible(true);
+    }//GEN-LAST:event_SaidaMouseClicked
+
    
     public static void main(String args[]) {
        
@@ -239,6 +261,7 @@ public class TelaCarregamento extends javax.swing.JFrame {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Saida;
     private rojeru_san.complementos.RSTableMetro TBservicos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
