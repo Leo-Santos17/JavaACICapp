@@ -62,6 +62,38 @@ public class TelaCarregamento extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TBservicos = new rojeru_san.complementos.RSTableMetro();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TBservicos1 = new rojeru_san.complementos.RSTableMetro();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TBservicos2 = new rojeru_san.complementos.RSTableMetro();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        TBservicos3 = new rojeru_san.complementos.RSTableMetro();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        TBservicos4 = new rojeru_san.complementos.RSTableMetro();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        TBservicos5 = new rojeru_san.complementos.RSTableMetro();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        TBservicos6 = new rojeru_san.complementos.RSTableMetro();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        TBservicos7 = new rojeru_san.complementos.RSTableMetro();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        TBservicos8 = new rojeru_san.complementos.RSTableMetro();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        TBservicos9 = new rojeru_san.complementos.RSTableMetro();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        TBservicos10 = new rojeru_san.complementos.RSTableMetro();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        TBservicos11 = new rojeru_san.complementos.RSTableMetro();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        TBservicos12 = new rojeru_san.complementos.RSTableMetro();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        TBservicos13 = new rojeru_san.complementos.RSTableMetro();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        TBservicos14 = new rojeru_san.complementos.RSTableMetro();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        TBservicos15 = new rojeru_san.complementos.RSTableMetro();
+        jScrollPane18 = new javax.swing.JScrollPane();
+        TBservicos16 = new rojeru_san.complementos.RSTableMetro();
 
         rSTableMetro1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -84,7 +116,9 @@ public class TelaCarregamento extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(153, 194, 77));
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Consulta de Serviços");
 
         Saida.setBackground(new java.awt.Color(255, 255, 255));
@@ -103,9 +137,9 @@ public class TelaCarregamento extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(428, Short.MAX_VALUE)
+                .addContainerGap(413, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(328, 328, 328)
+                .addGap(343, 343, 343)
                 .addComponent(Saida, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -113,7 +147,7 @@ public class TelaCarregamento extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Saida)
                     .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -153,16 +187,608 @@ public class TelaCarregamento extends javax.swing.JFrame {
             TBservicos.getColumnModel().getColumn(3).setMaxWidth(99999);
         }
 
+        TBservicos1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "SERVIÇO", "DESCRIÇÃO", "DATA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBservicos1.setColorBackgoundHead(new java.awt.Color(102, 102, 102));
+        TBservicos1.setColorBordeFilas(new java.awt.Color(0, 204, 255));
+        TBservicos1.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        TBservicos1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBservicos1MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(TBservicos1);
+        if (TBservicos1.getColumnModel().getColumnCount() > 0) {
+            TBservicos1.getColumnModel().getColumn(0).setMinWidth(30);
+            TBservicos1.getColumnModel().getColumn(0).setMaxWidth(9999);
+            TBservicos1.getColumnModel().getColumn(1).setMinWidth(200);
+            TBservicos1.getColumnModel().getColumn(1).setMaxWidth(9999);
+            TBservicos1.getColumnModel().getColumn(3).setMinWidth(150);
+            TBservicos1.getColumnModel().getColumn(3).setMaxWidth(99999);
+        }
+
+        TBservicos2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "SERVIÇO", "DESCRIÇÃO", "DATA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBservicos2.setColorBackgoundHead(new java.awt.Color(102, 102, 102));
+        TBservicos2.setColorBordeFilas(new java.awt.Color(0, 204, 255));
+        TBservicos2.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        TBservicos2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBservicos2MouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(TBservicos2);
+        if (TBservicos2.getColumnModel().getColumnCount() > 0) {
+            TBservicos2.getColumnModel().getColumn(0).setMinWidth(30);
+            TBservicos2.getColumnModel().getColumn(0).setMaxWidth(9999);
+            TBservicos2.getColumnModel().getColumn(1).setMinWidth(200);
+            TBservicos2.getColumnModel().getColumn(1).setMaxWidth(9999);
+            TBservicos2.getColumnModel().getColumn(3).setMinWidth(150);
+            TBservicos2.getColumnModel().getColumn(3).setMaxWidth(99999);
+        }
+
+        TBservicos3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "SERVIÇO", "DESCRIÇÃO", "DATA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBservicos3.setColorBackgoundHead(new java.awt.Color(102, 102, 102));
+        TBservicos3.setColorBordeFilas(new java.awt.Color(0, 204, 255));
+        TBservicos3.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        TBservicos3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBservicos3MouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(TBservicos3);
+        if (TBservicos3.getColumnModel().getColumnCount() > 0) {
+            TBservicos3.getColumnModel().getColumn(0).setMinWidth(30);
+            TBservicos3.getColumnModel().getColumn(0).setMaxWidth(9999);
+            TBservicos3.getColumnModel().getColumn(1).setMinWidth(200);
+            TBservicos3.getColumnModel().getColumn(1).setMaxWidth(9999);
+            TBservicos3.getColumnModel().getColumn(3).setMinWidth(150);
+            TBservicos3.getColumnModel().getColumn(3).setMaxWidth(99999);
+        }
+
+        TBservicos4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "SERVIÇO", "DESCRIÇÃO", "DATA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBservicos4.setColorBackgoundHead(new java.awt.Color(102, 102, 102));
+        TBservicos4.setColorBordeFilas(new java.awt.Color(0, 204, 255));
+        TBservicos4.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        TBservicos4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBservicos4MouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(TBservicos4);
+        if (TBservicos4.getColumnModel().getColumnCount() > 0) {
+            TBservicos4.getColumnModel().getColumn(0).setMinWidth(30);
+            TBservicos4.getColumnModel().getColumn(0).setMaxWidth(9999);
+            TBservicos4.getColumnModel().getColumn(1).setMinWidth(200);
+            TBservicos4.getColumnModel().getColumn(1).setMaxWidth(9999);
+            TBservicos4.getColumnModel().getColumn(3).setMinWidth(150);
+            TBservicos4.getColumnModel().getColumn(3).setMaxWidth(99999);
+        }
+
+        TBservicos5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "SERVIÇO", "DESCRIÇÃO", "DATA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBservicos5.setColorBackgoundHead(new java.awt.Color(102, 102, 102));
+        TBservicos5.setColorBordeFilas(new java.awt.Color(0, 204, 255));
+        TBservicos5.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        TBservicos5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBservicos5MouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(TBservicos5);
+        if (TBservicos5.getColumnModel().getColumnCount() > 0) {
+            TBservicos5.getColumnModel().getColumn(0).setMinWidth(30);
+            TBservicos5.getColumnModel().getColumn(0).setMaxWidth(9999);
+            TBservicos5.getColumnModel().getColumn(1).setMinWidth(200);
+            TBservicos5.getColumnModel().getColumn(1).setMaxWidth(9999);
+            TBservicos5.getColumnModel().getColumn(3).setMinWidth(150);
+            TBservicos5.getColumnModel().getColumn(3).setMaxWidth(99999);
+        }
+
+        TBservicos6.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "SERVIÇO", "DESCRIÇÃO", "DATA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBservicos6.setColorBackgoundHead(new java.awt.Color(102, 102, 102));
+        TBservicos6.setColorBordeFilas(new java.awt.Color(0, 204, 255));
+        TBservicos6.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        TBservicos6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBservicos6MouseClicked(evt);
+            }
+        });
+        jScrollPane8.setViewportView(TBservicos6);
+        if (TBservicos6.getColumnModel().getColumnCount() > 0) {
+            TBservicos6.getColumnModel().getColumn(0).setMinWidth(30);
+            TBservicos6.getColumnModel().getColumn(0).setMaxWidth(9999);
+            TBservicos6.getColumnModel().getColumn(1).setMinWidth(200);
+            TBservicos6.getColumnModel().getColumn(1).setMaxWidth(9999);
+            TBservicos6.getColumnModel().getColumn(3).setMinWidth(150);
+            TBservicos6.getColumnModel().getColumn(3).setMaxWidth(99999);
+        }
+
+        TBservicos7.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "SERVIÇO", "DESCRIÇÃO", "DATA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBservicos7.setColorBackgoundHead(new java.awt.Color(102, 102, 102));
+        TBservicos7.setColorBordeFilas(new java.awt.Color(0, 204, 255));
+        TBservicos7.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        TBservicos7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBservicos7MouseClicked(evt);
+            }
+        });
+        jScrollPane9.setViewportView(TBservicos7);
+        if (TBservicos7.getColumnModel().getColumnCount() > 0) {
+            TBservicos7.getColumnModel().getColumn(0).setMinWidth(30);
+            TBservicos7.getColumnModel().getColumn(0).setMaxWidth(9999);
+            TBservicos7.getColumnModel().getColumn(1).setMinWidth(200);
+            TBservicos7.getColumnModel().getColumn(1).setMaxWidth(9999);
+            TBservicos7.getColumnModel().getColumn(3).setMinWidth(150);
+            TBservicos7.getColumnModel().getColumn(3).setMaxWidth(99999);
+        }
+
+        TBservicos8.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "SERVIÇO", "DESCRIÇÃO", "DATA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBservicos8.setColorBackgoundHead(new java.awt.Color(102, 102, 102));
+        TBservicos8.setColorBordeFilas(new java.awt.Color(0, 204, 255));
+        TBservicos8.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        TBservicos8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBservicos8MouseClicked(evt);
+            }
+        });
+        jScrollPane10.setViewportView(TBservicos8);
+        if (TBservicos8.getColumnModel().getColumnCount() > 0) {
+            TBservicos8.getColumnModel().getColumn(0).setMinWidth(30);
+            TBservicos8.getColumnModel().getColumn(0).setMaxWidth(9999);
+            TBservicos8.getColumnModel().getColumn(1).setMinWidth(200);
+            TBservicos8.getColumnModel().getColumn(1).setMaxWidth(9999);
+            TBservicos8.getColumnModel().getColumn(3).setMinWidth(150);
+            TBservicos8.getColumnModel().getColumn(3).setMaxWidth(99999);
+        }
+
+        TBservicos9.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "SERVIÇO", "DESCRIÇÃO", "DATA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBservicos9.setColorBackgoundHead(new java.awt.Color(102, 102, 102));
+        TBservicos9.setColorBordeFilas(new java.awt.Color(0, 204, 255));
+        TBservicos9.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        TBservicos9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBservicos9MouseClicked(evt);
+            }
+        });
+        jScrollPane11.setViewportView(TBservicos9);
+        if (TBservicos9.getColumnModel().getColumnCount() > 0) {
+            TBservicos9.getColumnModel().getColumn(0).setMinWidth(30);
+            TBservicos9.getColumnModel().getColumn(0).setMaxWidth(9999);
+            TBservicos9.getColumnModel().getColumn(1).setMinWidth(200);
+            TBservicos9.getColumnModel().getColumn(1).setMaxWidth(9999);
+            TBservicos9.getColumnModel().getColumn(3).setMinWidth(150);
+            TBservicos9.getColumnModel().getColumn(3).setMaxWidth(99999);
+        }
+
+        TBservicos10.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "SERVIÇO", "DESCRIÇÃO", "DATA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBservicos10.setColorBackgoundHead(new java.awt.Color(102, 102, 102));
+        TBservicos10.setColorBordeFilas(new java.awt.Color(0, 204, 255));
+        TBservicos10.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        TBservicos10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBservicos10MouseClicked(evt);
+            }
+        });
+        jScrollPane12.setViewportView(TBservicos10);
+        if (TBservicos10.getColumnModel().getColumnCount() > 0) {
+            TBservicos10.getColumnModel().getColumn(0).setMinWidth(30);
+            TBservicos10.getColumnModel().getColumn(0).setMaxWidth(9999);
+            TBservicos10.getColumnModel().getColumn(1).setMinWidth(200);
+            TBservicos10.getColumnModel().getColumn(1).setMaxWidth(9999);
+            TBservicos10.getColumnModel().getColumn(3).setMinWidth(150);
+            TBservicos10.getColumnModel().getColumn(3).setMaxWidth(99999);
+        }
+
+        TBservicos11.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "SERVIÇO", "DESCRIÇÃO", "DATA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBservicos11.setColorBackgoundHead(new java.awt.Color(102, 102, 102));
+        TBservicos11.setColorBordeFilas(new java.awt.Color(0, 204, 255));
+        TBservicos11.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        TBservicos11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBservicos11MouseClicked(evt);
+            }
+        });
+        jScrollPane13.setViewportView(TBservicos11);
+        if (TBservicos11.getColumnModel().getColumnCount() > 0) {
+            TBservicos11.getColumnModel().getColumn(0).setMinWidth(30);
+            TBservicos11.getColumnModel().getColumn(0).setMaxWidth(9999);
+            TBservicos11.getColumnModel().getColumn(1).setMinWidth(200);
+            TBservicos11.getColumnModel().getColumn(1).setMaxWidth(9999);
+            TBservicos11.getColumnModel().getColumn(3).setMinWidth(150);
+            TBservicos11.getColumnModel().getColumn(3).setMaxWidth(99999);
+        }
+
+        TBservicos12.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "SERVIÇO", "DESCRIÇÃO", "DATA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBservicos12.setColorBackgoundHead(new java.awt.Color(102, 102, 102));
+        TBservicos12.setColorBordeFilas(new java.awt.Color(0, 204, 255));
+        TBservicos12.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        TBservicos12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBservicos12MouseClicked(evt);
+            }
+        });
+        jScrollPane14.setViewportView(TBservicos12);
+        if (TBservicos12.getColumnModel().getColumnCount() > 0) {
+            TBservicos12.getColumnModel().getColumn(0).setMinWidth(30);
+            TBservicos12.getColumnModel().getColumn(0).setMaxWidth(9999);
+            TBservicos12.getColumnModel().getColumn(1).setMinWidth(200);
+            TBservicos12.getColumnModel().getColumn(1).setMaxWidth(9999);
+            TBservicos12.getColumnModel().getColumn(3).setMinWidth(150);
+            TBservicos12.getColumnModel().getColumn(3).setMaxWidth(99999);
+        }
+
+        TBservicos13.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "SERVIÇO", "DESCRIÇÃO", "DATA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBservicos13.setColorBackgoundHead(new java.awt.Color(102, 102, 102));
+        TBservicos13.setColorBordeFilas(new java.awt.Color(0, 204, 255));
+        TBservicos13.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        TBservicos13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBservicos13MouseClicked(evt);
+            }
+        });
+        jScrollPane15.setViewportView(TBservicos13);
+        if (TBservicos13.getColumnModel().getColumnCount() > 0) {
+            TBservicos13.getColumnModel().getColumn(0).setMinWidth(30);
+            TBservicos13.getColumnModel().getColumn(0).setMaxWidth(9999);
+            TBservicos13.getColumnModel().getColumn(1).setMinWidth(200);
+            TBservicos13.getColumnModel().getColumn(1).setMaxWidth(9999);
+            TBservicos13.getColumnModel().getColumn(3).setMinWidth(150);
+            TBservicos13.getColumnModel().getColumn(3).setMaxWidth(99999);
+        }
+
+        TBservicos14.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "SERVIÇO", "DESCRIÇÃO", "DATA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBservicos14.setColorBackgoundHead(new java.awt.Color(102, 102, 102));
+        TBservicos14.setColorBordeFilas(new java.awt.Color(0, 204, 255));
+        TBservicos14.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        TBservicos14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBservicos14MouseClicked(evt);
+            }
+        });
+        jScrollPane16.setViewportView(TBservicos14);
+        if (TBservicos14.getColumnModel().getColumnCount() > 0) {
+            TBservicos14.getColumnModel().getColumn(0).setMinWidth(30);
+            TBservicos14.getColumnModel().getColumn(0).setMaxWidth(9999);
+            TBservicos14.getColumnModel().getColumn(1).setMinWidth(200);
+            TBservicos14.getColumnModel().getColumn(1).setMaxWidth(9999);
+            TBservicos14.getColumnModel().getColumn(3).setMinWidth(150);
+            TBservicos14.getColumnModel().getColumn(3).setMaxWidth(99999);
+        }
+
+        TBservicos15.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "SERVIÇO", "DESCRIÇÃO", "DATA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBservicos15.setColorBackgoundHead(new java.awt.Color(102, 102, 102));
+        TBservicos15.setColorBordeFilas(new java.awt.Color(0, 204, 255));
+        TBservicos15.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        TBservicos15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBservicos15MouseClicked(evt);
+            }
+        });
+        jScrollPane17.setViewportView(TBservicos15);
+        if (TBservicos15.getColumnModel().getColumnCount() > 0) {
+            TBservicos15.getColumnModel().getColumn(0).setMinWidth(30);
+            TBservicos15.getColumnModel().getColumn(0).setMaxWidth(9999);
+            TBservicos15.getColumnModel().getColumn(1).setMinWidth(200);
+            TBservicos15.getColumnModel().getColumn(1).setMaxWidth(9999);
+            TBservicos15.getColumnModel().getColumn(3).setMinWidth(150);
+            TBservicos15.getColumnModel().getColumn(3).setMaxWidth(99999);
+        }
+
+        TBservicos16.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "SERVIÇO", "DESCRIÇÃO", "DATA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBservicos16.setColorBackgoundHead(new java.awt.Color(102, 102, 102));
+        TBservicos16.setColorBordeFilas(new java.awt.Color(0, 204, 255));
+        TBservicos16.setColorBordeHead(new java.awt.Color(255, 255, 255));
+        TBservicos16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TBservicos16MouseClicked(evt);
+            }
+        });
+        jScrollPane18.setViewportView(TBservicos16);
+        if (TBservicos16.getColumnModel().getColumnCount() > 0) {
+            TBservicos16.getColumnModel().getColumn(0).setMinWidth(30);
+            TBservicos16.getColumnModel().getColumn(0).setMaxWidth(9999);
+            TBservicos16.getColumnModel().getColumn(1).setMinWidth(200);
+            TBservicos16.getColumnModel().getColumn(1).setMaxWidth(9999);
+            TBservicos16.getColumnModel().getColumn(3).setMinWidth(150);
+            TBservicos16.getColumnModel().getColumn(3).setMaxWidth(99999);
+        }
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2)
+            .addComponent(jScrollPane3)
+            .addComponent(jScrollPane4)
+            .addComponent(jScrollPane5)
+            .addComponent(jScrollPane6)
+            .addComponent(jScrollPane7)
+            .addComponent(jScrollPane8)
+            .addComponent(jScrollPane9)
+            .addComponent(jScrollPane10)
+            .addComponent(jScrollPane11)
+            .addComponent(jScrollPane12)
+            .addComponent(jScrollPane13)
+            .addComponent(jScrollPane14)
+            .addComponent(jScrollPane15)
+            .addComponent(jScrollPane16)
+            .addComponent(jScrollPane17)
+            .addComponent(jScrollPane18)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(64, Short.MAX_VALUE))
         );
@@ -215,6 +841,70 @@ public class TelaCarregamento extends javax.swing.JFrame {
         new tela_interativa().setVisible(true);
     }//GEN-LAST:event_SaidaMouseClicked
 
+    private void TBservicos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicos1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TBservicos1MouseClicked
+
+    private void TBservicos2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicos2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TBservicos2MouseClicked
+
+    private void TBservicos3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicos3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TBservicos3MouseClicked
+
+    private void TBservicos4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicos4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TBservicos4MouseClicked
+
+    private void TBservicos5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicos5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TBservicos5MouseClicked
+
+    private void TBservicos6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicos6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TBservicos6MouseClicked
+
+    private void TBservicos7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicos7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TBservicos7MouseClicked
+
+    private void TBservicos8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicos8MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TBservicos8MouseClicked
+
+    private void TBservicos9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicos9MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TBservicos9MouseClicked
+
+    private void TBservicos10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicos10MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TBservicos10MouseClicked
+
+    private void TBservicos11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicos11MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TBservicos11MouseClicked
+
+    private void TBservicos12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicos12MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TBservicos12MouseClicked
+
+    private void TBservicos13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicos13MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TBservicos13MouseClicked
+
+    private void TBservicos14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicos14MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TBservicos14MouseClicked
+
+    private void TBservicos15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicos15MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TBservicos15MouseClicked
+
+    private void TBservicos16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicos16MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TBservicos16MouseClicked
+
    
     public static void main(String args[]) {
        
@@ -238,7 +928,7 @@ public class TelaCarregamento extends javax.swing.JFrame {
         String sql = "SELECT id, service, descri, data FROM " + table + " WHERE id_cad="+Integer.valueOf(view.iddd);
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql))
         {
-            DefaultTableModel tbprodutos = (DefaultTableModel) TBservicos.getModel();
+            DefaultTableModel tbprodutos = (DefaultTableModel) TBservicos4.getModel();
             tbprodutos.setRowCount(0); // Limpa a tabela antes de adicionar os dados
                 
             while (rs.next())
@@ -263,12 +953,44 @@ public class TelaCarregamento extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Saida;
     private rojeru_san.complementos.RSTableMetro TBservicos;
+    private rojeru_san.complementos.RSTableMetro TBservicos1;
+    private rojeru_san.complementos.RSTableMetro TBservicos10;
+    private rojeru_san.complementos.RSTableMetro TBservicos11;
+    private rojeru_san.complementos.RSTableMetro TBservicos12;
+    private rojeru_san.complementos.RSTableMetro TBservicos13;
+    private rojeru_san.complementos.RSTableMetro TBservicos14;
+    private rojeru_san.complementos.RSTableMetro TBservicos15;
+    private rojeru_san.complementos.RSTableMetro TBservicos16;
+    private rojeru_san.complementos.RSTableMetro TBservicos2;
+    private rojeru_san.complementos.RSTableMetro TBservicos3;
+    private rojeru_san.complementos.RSTableMetro TBservicos4;
+    private rojeru_san.complementos.RSTableMetro TBservicos5;
+    private rojeru_san.complementos.RSTableMetro TBservicos6;
+    private rojeru_san.complementos.RSTableMetro TBservicos7;
+    private rojeru_san.complementos.RSTableMetro TBservicos8;
+    private rojeru_san.complementos.RSTableMetro TBservicos9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
+    private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private rojeru_san.complementos.RSTableMetro rSTableMetro1;
     // End of variables declaration//GEN-END:variables
 }
