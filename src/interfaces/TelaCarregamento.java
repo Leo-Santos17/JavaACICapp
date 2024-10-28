@@ -968,7 +968,7 @@ public class TelaCarregamento extends javax.swing.JFrame {
     {
         String homeDirectory = System.getProperty("user.home");
         String documentsDirectory = homeDirectory + File.separator + "Documents";
-        File gacicFolder = new File(documentsDirectory, "GACIC");
+        File gacicFolder = new File(documentsDirectory, "SCACIC");
         if (!gacicFolder.exists()) {
             System.out.println(gacicFolder);
             gacicFolder.mkdir();
@@ -1026,7 +1026,7 @@ public class TelaCarregamento extends javax.swing.JFrame {
             // Fecha o documento
             document.close();
             System.out.println("PDF criado com sucesso em: " + dest);
-            JOptionPane.showMessageDialog(null, "Relatório Salvo");
+            JOptionPane.showMessageDialog(null, "Relatório Salvo em "+dest);
         } catch (Exception e) {
             e.printStackTrace();
         }
