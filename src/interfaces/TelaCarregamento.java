@@ -4,6 +4,8 @@
  */
 package interfaces;
 
+//SQL and JAVA
+import com.itextpdf.kernel.colors.DeviceRgb;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
@@ -12,10 +14,28 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.SQLException;
+import java.sql.*;
+import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+
+// iText
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.*;
+import com.itextpdf.layout.borders.*;
+import com.itextpdf.layout.borders.Border;
+import com.itextpdf.layout.properties.TextAlignment;
+import com.itextpdf.io.image.*;
+import com.itextpdf.layout.properties.HorizontalAlignment;
+
+import java.io.File;
 
 /**
  *
- * @author Arthur Dias
+ * @author Arthur Dias, Leonardo
  */
 public class TelaCarregamento extends javax.swing.JFrame {
 
@@ -34,6 +54,8 @@ public class TelaCarregamento extends javax.swing.JFrame {
         // Conexão com banco de dados
         // PostGreSQL Connection
         try {
+            Date c = new Date();
+            System.out.println(c.getTime());
             // Estabelece a conexão com o banco
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Conectado ao banco de dados com sucesso!");
@@ -59,6 +81,7 @@ public class TelaCarregamento extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Saida = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TBservicos = new rojeru_san.complementos.RSTableMetro();
@@ -132,14 +155,26 @@ public class TelaCarregamento extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Baixar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(413, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(343, 343, 343)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(343, 343, 343))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(385, 385, 385)))
                 .addComponent(Saida, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -148,9 +183,13 @@ public class TelaCarregamento extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Saida)
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(Saida)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1))))
         );
 
         TBservicos.setModel(new javax.swing.table.DefaultTableModel(
@@ -905,6 +944,10 @@ public class TelaCarregamento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TBservicos16MouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        pdf();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
    
     public static void main(String args[]) {
        
@@ -920,6 +963,66 @@ public class TelaCarregamento extends javax.swing.JFrame {
         return conn;
     }
     
+    
+    public void pdf()
+    {
+        LocalDateTime c = LocalDateTime.now();
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH_mm_ss");
+        String dataHoraFormatada = c.format(formatador);
+        String dest = "relatorio_"+dataHoraFormatada+".pdf";
+        String destImg = "src/imagens/aciclog.png";
+        String sql = "SELECT id, service, descri, data FROM " + table + " WHERE id_cad="+Integer.valueOf(view.iddd);
+
+        // Cria um documento PDF
+        try (
+            // Conexão com o banco de dados
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql)
+        )
+        {
+            float widPDF[] = {85f, 300f, 100f};
+            // Cria o PdfWriter
+            PdfWriter writer = new PdfWriter(new File(dest));
+            // Cria o PdfDocument
+            PdfDocument pdf = new PdfDocument(writer);
+            // Cria um Document para adicionar elementos
+            Document document = new Document(pdf);
+
+            // Adiciona um parágrafo ao documento
+            ImageData data = ImageDataFactory.create(destImg);
+            Image imagem1 = new Image(data);
+            document.add(imagem1.setHorizontalAlignment(HorizontalAlignment.CENTER));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph("Relatório").setBold().setFontSize(20).setTextAlignment(TextAlignment.CENTER));
+      
+            
+            Table table = new Table(widPDF);
+            
+            Border bord1 = new GrooveBorder(3);
+            
+            Table threeTab = new Table(widPDF);
+            threeTab.setBackgroundColor(new DeviceRgb(23,23,23), 0.6f);
+            threeTab.addCell(new Cell().add(new Paragraph("Serviço")).setFontColor(new DeviceRgb(255,255,255)).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.CENTER));
+            threeTab.addCell(new Cell().add(new Paragraph("Descrição")).setFontColor(new DeviceRgb(255,255,255)).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.CENTER));
+            threeTab.addCell(new Cell().add(new Paragraph("Data")).setFontColor(new DeviceRgb(255,255,255)).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.CENTER));
+            document.add(threeTab.setHorizontalAlignment(HorizontalAlignment.CENTER));
+            
+            while (rs.next())
+            {
+                table.addCell(new Cell().add(new Paragraph(rs.getString("service"))));
+                table.addCell(new Cell().add(new Paragraph(rs.getString("descri"))));
+                table.addCell(new Cell().add(new Paragraph(rs.getDate("data").toString())));
+            }
+            document.add(table.setHorizontalAlignment(HorizontalAlignment.CENTER));
+            document.add(new Paragraph("Este relatório é gerado automaticamente pelo sistema").setFontSize(10).setTextAlignment(TextAlignment.CENTER));
+            // Fecha o documento
+            document.close();
+            System.out.println("PDF criado com sucesso em: " + dest);
+            JOptionPane.showMessageDialog(null, "Relatório Salvo");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     
     
     // Atualizar tabela
@@ -969,6 +1072,7 @@ public class TelaCarregamento extends javax.swing.JFrame {
     private rojeru_san.complementos.RSTableMetro TBservicos7;
     private rojeru_san.complementos.RSTableMetro TBservicos8;
     private rojeru_san.complementos.RSTableMetro TBservicos9;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
