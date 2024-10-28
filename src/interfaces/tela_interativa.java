@@ -4,6 +4,8 @@
  */
 package interfaces;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Arthur Dias, 
@@ -97,7 +99,7 @@ public class tela_interativa extends javax.swing.JFrame {
         jMenu4.setText("Serviços");
 
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/table_add.png"))); // NOI18N
-        jMenuItem10.setText("Criar");
+        jMenuItem10.setText("Gerenciar");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem10ActionPerformed(evt);
@@ -144,8 +146,21 @@ public class tela_interativa extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
-        new view().setVisible(true);   
+        int yesNoJava = JOptionPane.showOptionDialog(
+                null, 
+                "Você deseja sair do programa?", 
+                "Fechar Programa", 
+                JOptionPane.YES_NO_OPTION, 
+                JOptionPane.QUESTION_MESSAGE, 
+                null, 
+                new Object[] {"Não", "Sim"},
+                "Não"
+        );
+        System.out.println(yesNoJava);
+        if (yesNoJava == 1)
+        {
+            System.exit(0);
+        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed

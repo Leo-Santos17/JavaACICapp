@@ -21,7 +21,7 @@ public class ResetSenha extends javax.swing.JFrame {
     private Connection conn;
     // Variáveis Banco de dados - PostGreSQL
     public static String iddd;
-    public static String idddd;
+    public static String idddUser;
     private static final String table = "acic_cads";
     private static final String database = "acicDATA";
     private static final String URL = "jdbc:postgresql://localhost:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
@@ -63,6 +63,7 @@ public class ResetSenha extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         CPRESETsenha1 = new app.bolivia.swing.JCTextField();
         Enviar = new javax.swing.JButton();
+        Saida = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("redefinir senha");
@@ -111,11 +112,11 @@ public class ResetSenha extends javax.swing.JFrame {
 
         jLabel4.setText("Por favor, informe o E-MAIL associado");
 
-        jLabel3.setText("que enviaremos um link para o mesmo");
+        jLabel3.setText("para realizar a restauração da senha.");
 
-        jLabel6.setText("com as instruções, para a restauração");
+        jLabel6.setText("O email é o identificador da conta, com-");
 
-        jLabel9.setText("de sua senha.");
+        jLabel9.setText("provante de propriedade");
 
         CPRESETsenha1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         CPRESETsenha1.setPlaceholder("E-MAIL");
@@ -137,6 +138,17 @@ public class ResetSenha extends javax.swing.JFrame {
             }
         });
 
+        Saida.setBackground(new java.awt.Color(255, 255, 255));
+        Saida.setFont(new java.awt.Font("Arial Black", 0, 35)); // NOI18N
+        Saida.setForeground(new java.awt.Color(255, 255, 255));
+        Saida.setText("x");
+        Saida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Saida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SaidaMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -148,7 +160,7 @@ public class ResetSenha extends javax.swing.JFrame {
                         .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -166,6 +178,8 @@ public class ResetSenha extends javax.swing.JFrame {
                         .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Saida)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -175,8 +189,13 @@ public class ResetSenha extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Saida, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -236,13 +255,17 @@ public class ResetSenha extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_CPRESETsenha1KeyPressed
 
+    private void SaidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaidaMouseClicked
+        setVisible(false);
+    }//GEN-LAST:event_SaidaMouseClicked
+
     
     public boolean checarLogin() {
         // Inicializa uma variável boolean para controlar o status do login
         boolean check = false;
 
         // Define a consulta SQL para selecionar o id, senha e usuário da tabela
-        String sql = "SELECT id, email FROM " + table;
+        String sql = "SELECT id, email, usuar FROM " + table;
 
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) 
         {
@@ -256,6 +279,7 @@ public class ResetSenha extends javax.swing.JFrame {
                     System.out.println("Login Efetuado com sucesso");
                     check = true; // Marca que o login foi bem-sucedido
                     iddd = rs.getString("id");
+                    idddUser = rs.getString("usuar");
                     return true;
                 }
             }
@@ -307,6 +331,7 @@ public class ResetSenha extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private app.bolivia.swing.JCTextField CPRESETsenha1;
     private javax.swing.JButton Enviar;
+    private javax.swing.JLabel Saida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

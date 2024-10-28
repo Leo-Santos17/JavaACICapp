@@ -174,7 +174,7 @@ public class TelaCarregamento extends javax.swing.JFrame {
                         .addGap(343, 343, 343))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(385, 385, 385)))
+                        .addGap(397, 397, 397)))
                 .addComponent(Saida, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -969,7 +969,7 @@ public class TelaCarregamento extends javax.swing.JFrame {
         LocalDateTime c = LocalDateTime.now();
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH_mm_ss");
         String dataHoraFormatada = c.format(formatador);
-        String dest = "relatorio_"+dataHoraFormatada+".pdf";
+        String dest = "/home/leo/pdf/relatorio_"+dataHoraFormatada+".pdf";
         String destImg = "src/imagens/aciclog.png";
         String sql = "SELECT id, service, descri, data FROM " + table + " WHERE id_cad="+Integer.valueOf(view.iddd);
 
