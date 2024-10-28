@@ -25,7 +25,7 @@ public class ResetSenha extends javax.swing.JFrame {
     private static final String table = "acic_cads";
     private static final String database = "acicDATA";
     private static final String URL = "jdbc:postgresql://localhost:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
-    private static final String USER = "acicUSER";  // Usuário do banco
+    private static final String USER = "postgres";  // Usuário do banco
     private static final String PASSWORD = "123";
 
     /**

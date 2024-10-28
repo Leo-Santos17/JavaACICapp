@@ -44,7 +44,7 @@ public class TelaCarregamento extends javax.swing.JFrame {
     private static final String table = "acic_table";
     private static final String database = "acicDATA";
     private static final String URL = "jdbc:postgresql://localhost:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
-    private static final String USER = "acicUSER";  // Usuário do banco
+    private static final String USER = "postgres";  // Usuário do banco
     private static final String PASSWORD = "123";
     /**
      * Creates new form TelaPrincipal
@@ -966,10 +966,18 @@ public class TelaCarregamento extends javax.swing.JFrame {
     
     public void pdf()
     {
+        String homeDirectory = System.getProperty("user.home");
+        String documentsDirectory = homeDirectory + File.separator + "Documents";
+        File gacicFolder = new File(documentsDirectory, "GACIC");
+        if (!gacicFolder.exists()) {
+            System.out.println(gacicFolder);
+            gacicFolder.mkdir();
+            System.out.println(gacicFolder);
+        }
         LocalDateTime c = LocalDateTime.now();
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH_mm_ss");
         String dataHoraFormatada = c.format(formatador);
-        String dest = "/home/leo/pdf/relatorio_"+dataHoraFormatada+".pdf";
+        String dest = gacicFolder+"/relatorio_"+dataHoraFormatada+".pdf";
         String destImg = "src/imagens/aciclog.png";
         String sql = "SELECT id, service, descri, data FROM " + table + " WHERE id_cad="+Integer.valueOf(view.iddd);
 
