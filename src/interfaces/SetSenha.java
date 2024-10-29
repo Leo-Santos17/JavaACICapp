@@ -4,17 +4,40 @@
  */
 package interfaces;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  *
- * @author Arthur Dias
+ * @author Arthur Dias, Leonardo
  */
+import javax.swing.JOptionPane;
 public class SetSenha extends javax.swing.JFrame {
 
     /**
      * Creates new form esqueceuSenha
      */
+    ResetSenha rsss = new ResetSenha();
+    private Connection conn;
+    private static final String table = "acic_cads";
+    private static final String database = "acicDATA";
+    private static final String URL = "jdbc:postgresql://localhost:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
+    private static final String USER = "postgres";  // Usuário do banco
+    private static final String PASSWORD = "cupqj11";
     public SetSenha() {
         initComponents();
+        try {
+            // Estabelece a conexão com o banco
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Conectado ao banco de dados com sucesso!");
+            userDataMM.setText("Seu Usuario é: "+rsss.idddUser);
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao conectar ao banco de dados");
+        }
     }
 
     /**
@@ -35,6 +58,7 @@ public class SetSenha extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         CNewSenha = new app.bolivia.swing.JCTextField();
         Confirmar = new javax.swing.JButton();
+        userDataMM = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 153));
 
@@ -112,6 +136,8 @@ public class SetSenha extends javax.swing.JFrame {
             }
         });
 
+        userDataMM.setText("jLabel2");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -129,13 +155,16 @@ public class SetSenha extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(CNewSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(Confirmar)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(95, 95, 95))))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(91, 91, 91)
+                                        .addComponent(Confirmar))
+                                    .addComponent(userDataMM))
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -144,8 +173,10 @@ public class SetSenha extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jLabel1)
-                .addGap(41, 41, 41)
+                .addGap(13, 13, 13)
                 .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(userDataMM)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -176,9 +207,54 @@ public class SetSenha extends javax.swing.JFrame {
 
     private void ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmarActionPerformed
         // TODO add your handling code here:
-        new view().setVisible(true);
+        if (atualizarCadastro())
+        {
+            JOptionPane.showMessageDialog(null,"Alterado Com sucesso");
+            new view().setVisible(true);
+            setVisible(false);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Erro");
+        }
+        
     }//GEN-LAST:event_ConfirmarActionPerformed
 
+    
+    public boolean atualizarCadastro()
+    {
+        // Ajustar nome das colunas se necessário
+        String sql = "UPDATE "+table+" "
+                + "SET senha = ?"
+                + " WHERE id = ?";
+        
+        // UPDATE
+        try (PreparedStatement pst = conn.prepareStatement(sql)) {
+            // Substitui o placeholder "?" pelo valor do i
+            //pst.setInt(4, id);
+            pst.setString(1, CNewSenha.getText());
+            pst.setInt(2, Integer.parseInt(rsss.iddd));
+            //pst.setString(1, jvservico.getText());  // Atualiza o nome do serviço
+            //pst.setString(2, jvdescricao.getText()); // Atualiza a descrição
+            //pst.setDate(3, date);      // Atualiza a data
+            
+            int rowsAffected = pst.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Serviço atualizar com sucesso!");
+            } else {
+                System.out.println("Erro ai atualizar serviço.");
+            }
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Erro ao atualizar serviço.");
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -227,5 +303,6 @@ public class SetSenha extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private rojerusan.RSPanelImage rSPanelImage1;
+    private javax.swing.JLabel userDataMM;
     // End of variables declaration//GEN-END:variables
 }
