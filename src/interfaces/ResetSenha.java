@@ -139,7 +139,7 @@ public class ResetSenha extends javax.swing.JFrame {
         });
 
         Saida.setBackground(new java.awt.Color(255, 255, 255));
-        Saida.setFont(new java.awt.Font("Arial Black", 0, 35)); // NOI18N
+        Saida.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         Saida.setForeground(new java.awt.Color(255, 255, 255));
         Saida.setText("x");
         Saida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -189,13 +189,13 @@ public class ResetSenha extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(Saida, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Saida, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addGap(33, 33, 33)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

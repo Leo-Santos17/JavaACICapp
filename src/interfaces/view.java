@@ -93,7 +93,7 @@ public class view extends javax.swing.JFrame {
                 SaidaMouseClicked(evt);
             }
         });
-        jPanel2.add(Saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 20, -1));
+        jPanel2.add(Saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 30, 50));
 
         CPesqueceusenha.setFont(new java.awt.Font("Arial", 0, 17)); // NOI18N
         CPesqueceusenha.setForeground(new java.awt.Color(255, 255, 255));
@@ -117,8 +117,8 @@ public class view extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Bem Vindo!");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 140, 40));
+        jLabel6.setText("Bem Vindo à SCACIC!");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 240, 40));
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 17)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));

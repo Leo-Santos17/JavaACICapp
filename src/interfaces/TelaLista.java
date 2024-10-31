@@ -4,6 +4,21 @@
  */
 package interfaces;
 
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.colors.DeviceRgb;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.borders.Border;
+import com.itextpdf.layout.borders.GrooveBorder;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.properties.HorizontalAlignment;
+import com.itextpdf.layout.properties.TextAlignment;
+import java.io.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
@@ -12,16 +27,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
  * @author Arthur Dias
  */
-public class TelaPrincipal extends javax.swing.JFrame {
+public class TelaLista extends javax.swing.JFrame {
 
     private Connection conn;
     // Variáveis Banco de dados - PostGreSQL
-    private static final String table = "acic_table";
+    private static final String table = "acic_events";
     private static final String database = "acicDATA";
     private static final String URL = "jdbc:postgresql://localhost:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
     private static final String USER = "postgres";  // Usuário do banco
@@ -29,7 +46,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form TelaPrincipal
      */
-    public TelaPrincipal() {
+    public TelaLista() {
         initComponents();
         // Conexão com banco de dados
         // PostGreSQL Connection
@@ -59,17 +76,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jvdata = new javax.swing.JTextField();
-        jvservico = new javax.swing.JTextField();
-        jvdescricao = new javax.swing.JTextField();
+        name_us_event = new javax.swing.JTextField();
         excluir = new javax.swing.JButton();
         atualizar = new javax.swing.JButton();
         CadastrarServico = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jvID = new javax.swing.JTextField();
         Saida = new javax.swing.JLabel();
+        pdfGenerator = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TBservicos = new rojeru_san.complementos.RSTableMetro();
@@ -96,35 +110,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(153, 194, 77));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("CADASTRO DE SERVIÇOS");
+        jLabel1.setText("Lista de Participantes");
 
-        jLabel2.setText("SERVIÇO");
+        jLabel2.setText("Nome");
 
-        jLabel3.setText("DESCRIÇÃO");
-
-        jLabel4.setText("DATA");
-
-        jvdata.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jvdata.addActionListener(new java.awt.event.ActionListener() {
+        name_us_event.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        name_us_event.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jvdataActionPerformed(evt);
-            }
-        });
-
-        jvservico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jvservico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jvservicoActionPerformed(evt);
-            }
-        });
-
-        jvdescricao.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jvdescricao.setToolTipText("");
-        jvdescricao.setActionCommand("<Not Set>");
-        jvdescricao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jvdescricao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jvdescricaoActionPerformed(evt);
+                name_us_eventActionPerformed(evt);
             }
         });
 
@@ -173,6 +166,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        pdfGenerator.setText("Gerar PDF");
+        pdfGenerator.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pdfGenerator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pdfGeneratorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -180,34 +181,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jvID, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel5)))
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jvservico, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jvdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jvdata, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 275, Short.MAX_VALUE)
-                                .addComponent(Saida))))
                     .addComponent(jLabel1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(CadastrarServico)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(CadastrarServico)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pdfGenerator, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jvID, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel5)))
+                                .addGap(35, 35, 35)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(name_us_event, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Saida, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21))
         );
         jPanel2Layout.setVerticalGroup(
@@ -218,29 +214,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5))
-                                .addGap(7, 7, 7)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jvservico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jvdescricao)
-                                    .addComponent(jvID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(7, 7, 7)
-                                .addComponent(jvdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(41, 41, 41))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(Saida)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5))
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(name_us_event, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jvID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(Saida))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CadastrarServico)
                     .addComponent(excluir)
-                    .addComponent(atualizar))
+                    .addComponent(atualizar)
+                    .addComponent(pdfGenerator))
                 .addGap(30, 30, 30))
         );
 
@@ -249,11 +236,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "SERVIÇO", "DESCRIÇÃO", "DATA"
+                "ID", "NOME"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -272,17 +259,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         if (TBservicos.getColumnModel().getColumnCount() > 0) {
             TBservicos.getColumnModel().getColumn(0).setMinWidth(30);
             TBservicos.getColumnModel().getColumn(0).setMaxWidth(9999);
-            TBservicos.getColumnModel().getColumn(1).setMinWidth(200);
-            TBservicos.getColumnModel().getColumn(1).setMaxWidth(9999);
-            TBservicos.getColumnModel().getColumn(3).setMinWidth(150);
-            TBservicos.getColumnModel().getColumn(3).setMaxWidth(99999);
         }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,20 +305,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jvdataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jvdataActionPerformed
+    private void name_us_eventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_us_eventActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jvdataActionPerformed
-
-    private void jvservicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jvservicoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jvservicoActionPerformed
-
-    private void jvdescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jvdescricaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jvdescricaoActionPerformed
+    }//GEN-LAST:event_name_us_eventActionPerformed
 
     private void CadastrarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarServicoActionPerformed
-        cadastrarServico(jvservico.getText(),jvdescricao.getText());
+        cadastrarServico(name_us_event.getText());
         carregarServicos();
     }//GEN-LAST:event_CadastrarServicoActionPerformed
 
@@ -382,9 +357,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void TBservicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicosMouseClicked
        if(TBservicos.getSelectedRow() != -1){
         jvID.setText(TBservicos.getValueAt(TBservicos.getSelectedRow(), 0).toString());
-        jvservico.setText(TBservicos.getValueAt(TBservicos.getSelectedRow(), 1).toString());
-        jvdescricao.setText(TBservicos.getValueAt(TBservicos.getSelectedRow(), 2).toString());
-        jvdata.setText(TBservicos.getValueAt(TBservicos.getSelectedRow(), 3).toString());
+        name_us_event.setText(TBservicos.getValueAt(TBservicos.getSelectedRow(), 1).toString());
          }
     }//GEN-LAST:event_TBservicosMouseClicked
 
@@ -393,12 +366,82 @@ public class TelaPrincipal extends javax.swing.JFrame {
         new tela_interativa().setVisible(true);  
     }//GEN-LAST:event_SaidaMouseClicked
 
-   
+    private void pdfGeneratorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdfGeneratorActionPerformed
+        pdfInscric();
+    }//GEN-LAST:event_pdfGeneratorActionPerformed
+
+   public void pdfInscric()
+    {
+        String homeDirectory = System.getProperty("user.home");
+        String documentsDirectory = homeDirectory + File.separator + "Documents";
+        File gacicFolder = new File(documentsDirectory, "SCACIC");
+        if (!gacicFolder.exists()) {
+            System.out.println(gacicFolder);
+            gacicFolder.mkdir();
+            System.out.println(gacicFolder);
+        }
+        LocalDateTime c = LocalDateTime.now();
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH_mm_ss");
+        String dataHoraFormatada = c.format(formatador);
+        String dest = gacicFolder+"/evento_"+dataHoraFormatada+".pdf";
+        String destImg = "src/imagens/aciclog.png";
+        String sql = "SELECT id, nome FROM " + table + " WHERE id_cad="+Integer.valueOf(view.iddd);
+
+        // Cria um documento PDF
+        try (
+            // Conexão com o banco de dados
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql)
+        )
+        {
+            float widPDF[] = {200f, 300f};
+            // Cria o PdfWriter
+            PdfWriter writer = new PdfWriter(new FileOutputStream(dest));
+            // Cria o PdfDocument
+            PdfDocument pdf = new PdfDocument(writer);
+            // Cria um Document para adicionar elementos
+            Document document = new Document(pdf);
+
+            // Adiciona um parágrafo ao documento
+            ImageData data = ImageDataFactory.create(destImg);
+            Image imagem1 = new Image(data);
+            document.add(imagem1.setHorizontalAlignment(HorizontalAlignment.CENTER));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph("Lista de evento").setBold().setFontSize(20).setTextAlignment(TextAlignment.CENTER));
+      
+            
+            Table table = new Table(widPDF);
+            
+            Border bord1 = new GrooveBorder(3);
+            
+            Table threeTab = new Table(widPDF);
+            threeTab.setBackgroundColor(new DeviceRgb(23,23,23), 0.6f);
+            threeTab.addCell(new Cell().add(new Paragraph("Nome")).setFontColor(new DeviceRgb(255,255,255)).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.CENTER));
+            threeTab.addCell(new Cell().add(new Paragraph("Assinatura")).setFontColor(new DeviceRgb(255,255,255)).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.CENTER));
+            document.add(threeTab.setHorizontalAlignment(HorizontalAlignment.CENTER));
+            
+            while (rs.next())
+            {
+                table.addCell(new Cell().add(new Paragraph(rs.getString("nome"))));
+                table.addCell(new Cell().add(new Paragraph("")));
+            }
+            document.add(table.setHorizontalAlignment(HorizontalAlignment.CENTER));
+            document.add(new Paragraph("Este relatório é gerado automaticamente pelo SCACIC").setFontSize(10).setTextAlignment(TextAlignment.CENTER));
+            // Fecha o documento
+            document.close();
+            System.out.println("PDF criado com sucesso em: " + dest);
+            JOptionPane.showMessageDialog(null, "Relatório Salvo em "+dest);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            e.printStackTrace();
+        }
+    }
+    
     public static void main(String args[]) {
        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPrincipal().setVisible(true);
+                new TelaLista().setVisible(true);
             }
         });
     }
@@ -409,18 +452,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     // ADD Database PostGreSQL
-    public void cadastrarServico(String servico, String descricao)
+    public void cadastrarServico(String servico)
     {
         // Ajustar nome das colunas se necessário
-        String sql = "INSERT INTO "+table+" (service, descri, data,id_cad) VALUES "
-                + "(?, ?, CURRENT_DATE,?)";
+        String sql = "INSERT INTO "+table+" (nome,id_cad) VALUES "
+                + "(?,?)";
         
         // Incremento
         try(PreparedStatement pst = conn.prepareStatement(sql))
         {
-           pst.setString(1, servico); // Primeiro "?" é o nome de serviço
-           pst.setString(2, descricao); // Segundo "?" é a descrição
-           pst.setInt(3, Integer.parseInt(view.iddd)); // Terceiro "?" é a Referência
+           pst.setString(1, name_us_event.getText()); // Primeiro "?" é o nome de serviço
+           pst.setInt(2, Integer.parseInt(view.iddd)); // Terceiro "?" é a Referência
             
             int rowsAffected = pst.executeUpdate();
             
@@ -468,18 +510,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     {
         // Ajustar nome das colunas se necessário
         String sql = "UPDATE "+table+" "
-                + "SET service = ?, descri = ?, data = ?"
+                + "SET nome = ?"
                 + " WHERE id = ?";
         java.sql.Date date;
         
         // UPDATE
         try (PreparedStatement pst = conn.prepareStatement(sql)) {
-            date = java.sql.Date.valueOf(jvdata.getText());
             // Substitui o placeholder "?" pelo valor do i
-            pst.setInt(4, id);
-            pst.setString(1, jvservico.getText());  // Atualiza o nome do serviço
-            pst.setString(2, jvdescricao.getText()); // Atualiza a descrição
-            pst.setDate(3, date);      // Atualiza a data
+            pst.setInt(2, id);
+            pst.setString(1, name_us_event.getText());  // Atualiza o nome do serviço
             
             int rowsAffected = pst.executeUpdate();
             if (rowsAffected > 0) {
@@ -498,7 +537,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Atualizar tabela
     public void carregarServicos() {
         // Ajustar nome das colunas se necessário
-        String sql = "SELECT id, service, descri, data FROM " + table + " WHERE id_cad="+Integer.valueOf(view.iddd);
+        String sql = "SELECT id, nome FROM " + table + " WHERE id_cad="+Integer.valueOf(view.iddd);
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql))
         {
             DefaultTableModel tbprodutos = (DefaultTableModel) TBservicos.getModel();
@@ -509,9 +548,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 Object[] dados =
                 {
                     rs.getInt("id"),
-                    rs.getString("service"),
-                    rs.getString("descri"),
-                    rs.getDate("data")
+                    rs.getString("nome")
                 };
                 
                 tbprodutos.addRow(dados);
@@ -531,8 +568,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton excluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -540,9 +575,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jvID;
-    private javax.swing.JTextField jvdata;
-    private javax.swing.JTextField jvdescricao;
-    private javax.swing.JTextField jvservico;
+    private javax.swing.JTextField name_us_event;
+    private javax.swing.JButton pdfGenerator;
     private rojeru_san.complementos.RSTableMetro rSTableMetro1;
     // End of variables declaration//GEN-END:variables
 }

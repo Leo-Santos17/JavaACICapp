@@ -171,11 +171,11 @@ public class TelaCarregamento extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(343, 343, 343))
+                        .addGap(340, 340, 340))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(397, 397, 397)))
-                .addComponent(Saida, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(394, 394, 394)))
+                .addComponent(Saida)
                 .addGap(14, 14, 14))
         );
         jPanel2Layout.setVerticalGroup(
@@ -963,6 +963,80 @@ public class TelaCarregamento extends javax.swing.JFrame {
         return conn;
     }
     
+    public void pdfInscric()
+    {
+        String homeDirectory = System.getProperty("user.home");
+        String documentsDirectory = homeDirectory + File.separator + "Documents";
+        File gacicFolder = new File(documentsDirectory, "SCACIC");
+        if (!gacicFolder.exists()) {
+            System.out.println(gacicFolder);
+            gacicFolder.mkdir();
+            System.out.println(gacicFolder);
+        }
+        LocalDateTime c = LocalDateTime.now();
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH_mm_ss");
+        String dataHoraFormatada = c.format(formatador);
+        String dest = gacicFolder+"/evento_"+dataHoraFormatada+".pdf";
+        String destImg = "src/imagens/aciclog.png";
+        String sql = "SELECT id, service, descri, data FROM " + table + " WHERE id_cad="+Integer.valueOf(view.iddd);
+
+        // Cria um documento PDF
+        try (
+            // Conexão com o banco de dados
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql)
+        )
+        {
+            float widPDF[] = {300f, 300f};
+            // Cria o PdfWriter
+            PdfWriter writer = new PdfWriter(new File(dest));
+            // Cria o PdfDocument
+            PdfDocument pdf = new PdfDocument(writer);
+            // Cria um Document para adicionar elementos
+            Document document = new Document(pdf);
+
+            // Adiciona um parágrafo ao documento
+            ImageData data = ImageDataFactory.create(destImg);
+            Image imagem1 = new Image(data);
+            document.add(imagem1.setHorizontalAlignment(HorizontalAlignment.CENTER));
+            document.add(new Paragraph(""));
+            document.add(new Paragraph("Lista de presença").setBold().setFontSize(20).setTextAlignment(TextAlignment.CENTER));
+      
+            
+            Table table = new Table(widPDF);
+            
+            Border bord1 = new GrooveBorder(3);
+            
+            Table threeTab = new Table(widPDF);
+            threeTab.setBackgroundColor(new DeviceRgb(23,23,23), 0.6f);
+            threeTab.addCell(new Cell().add(new Paragraph("Nome")).setFontColor(new DeviceRgb(255,255,255)).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.CENTER));
+            threeTab.addCell(new Cell().add(new Paragraph("Assinatura")).setFontColor(new DeviceRgb(255,255,255)).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.CENTER));
+            document.add(threeTab.setHorizontalAlignment(HorizontalAlignment.CENTER));
+            
+            for (int i = 0; i<10; i++)
+            {
+                table.addCell(new Cell().add(new Paragraph("Leonardo Santos Maciel")));
+                table.addCell(new Cell().add(new Paragraph("")));
+            }
+            
+            /*while (rs.next())
+            {
+                table.addCell(new Cell().add(new Paragraph(rs.getString("service"))));
+                table.addCell(new Cell().add(new Paragraph(rs.getString("descri").toString())));
+                table.addCell(new Cell().add(new Paragraph(rs.getDate("data").toString())));
+            }*/
+            document.add(table.setHorizontalAlignment(HorizontalAlignment.CENTER));
+            document.add(new Paragraph("Este relatório é gerado automaticamente pelo sistema").setFontSize(10).setTextAlignment(TextAlignment.CENTER));
+            // Fecha o documento
+            document.close();
+            System.out.println("PDF criado com sucesso em: " + dest);
+            JOptionPane.showMessageDialog(null, "Relatório Salvo em "+dest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        
+    }
     
     public void pdf()
     {
@@ -1018,11 +1092,11 @@ public class TelaCarregamento extends javax.swing.JFrame {
             while (rs.next())
             {
                 table.addCell(new Cell().add(new Paragraph(rs.getString("service"))));
-                table.addCell(new Cell().add(new Paragraph(rs.getString("descri"))));
+                table.addCell(new Cell().add(new Paragraph(rs.getString("descri").toString())));
                 table.addCell(new Cell().add(new Paragraph(rs.getDate("data").toString())));
             }
             document.add(table.setHorizontalAlignment(HorizontalAlignment.CENTER));
-            document.add(new Paragraph("Este relatório é gerado automaticamente pelo sistema").setFontSize(10).setTextAlignment(TextAlignment.CENTER));
+            document.add(new Paragraph("Este relatório é gerado automaticamente pelo SCACIC").setFontSize(10).setTextAlignment(TextAlignment.CENTER));
             // Fecha o documento
             document.close();
             System.out.println("PDF criado com sucesso em: " + dest);

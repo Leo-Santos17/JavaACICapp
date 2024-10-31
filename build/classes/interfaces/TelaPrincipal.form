@@ -123,8 +123,8 @@
                                   <Component id="jvdata" min="-2" pref="105" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel4" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <EmptySpace pref="278" max="32767" attributes="0"/>
-                                      <Component id="Saida" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <EmptySpace pref="275" max="32767" attributes="0"/>
+                                      <Component id="Saida" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>

@@ -68,7 +68,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="490" y="40" width="20" height="-1"/>
+              <AbsoluteConstraints x="490" y="30" width="30" height="50"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -103,11 +103,11 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Bem Vindo!"/>
+            <Property name="text" type="java.lang.String" value="Bem Vindo &#xe0; SCACIC!"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="190" y="70" width="140" height="40"/>
+              <AbsoluteConstraints x="140" y="70" width="240" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
