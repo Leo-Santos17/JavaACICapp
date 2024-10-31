@@ -4,6 +4,13 @@
  */
 package interfaces;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Arthur Dias
@@ -13,8 +20,23 @@ public class IntCADASTRO extends javax.swing.JFrame {
     /**
      * Creates new form IntCADASTRO
      */
+    private Connection conn;
+    // Variáveis Banco de dados - PostGreSQL
+    private static final String table = "acic_cads";
+    private static final String database = "acicDATA";
+    private static final String URL = "jdbc:postgresql://localhost:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
+    private static final String USER = "postgres";  // Usuário do banco
+    private static final String PASSWORD = "123";
     public IntCADASTRO() {
         initComponents();
+        try {
+            // Estabelece a conexão com o banco
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Conectado ao banco de dados com sucesso!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao conectar ao banco de dados");
+        }
     }
 
     /**
@@ -38,6 +60,7 @@ public class IntCADASTRO extends javax.swing.JFrame {
         CDsenha = new javax.swing.JPasswordField();
         Confsenha = new javax.swing.JPasswordField();
         cadastrar = new javax.swing.JButton();
+        Saida = new javax.swing.JLabel();
         rSPanelImage1 = new rojerusan.RSPanelImage();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -50,15 +73,15 @@ public class IntCADASTRO extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Creat Account");
+        jLabel2.setText("Criar local");
 
-        jLabel3.setText("nome");
+        jLabel3.setText("Usuário");
 
-        jLabel4.setText("email");
+        jLabel4.setText("Email");
 
-        jLabel5.setText("senha");
+        jLabel5.setText("Senha");
 
-        jLabel6.setText("confirmar senha");
+        jLabel6.setText("Confirmar senha");
 
         CDemail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         CDemail.addActionListener(new java.awt.event.ActionListener() {
@@ -87,44 +110,61 @@ public class IntCADASTRO extends javax.swing.JFrame {
             }
         });
 
+        Saida.setBackground(new java.awt.Color(255, 255, 255));
+        Saida.setFont(new java.awt.Font("Arial Black", 0, 35)); // NOI18N
+        Saida.setForeground(new java.awt.Color(255, 255, 255));
+        Saida.setText("x");
+        Saida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Saida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SaidaMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(CDnome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(CDemail, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(CDsenha, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Confsenha, javax.swing.GroupLayout.Alignment.LEADING))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(70, 70, 70)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CDnome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CDemail, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CDsenha, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Confsenha, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(109, 109, 109)
+                                .addComponent(cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Saida)))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addComponent(Saida, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(12, 12, 12)
-                .addComponent(CDnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CDnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CDemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CDsenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
@@ -132,7 +172,7 @@ public class IntCADASTRO extends javax.swing.JFrame {
                 .addComponent(Confsenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         rSPanelImage1.setImagen(new javax.swing.ImageIcon(getClass().getResource("/imagens/5087579.png"))); // NOI18N
@@ -182,6 +222,27 @@ public class IntCADASTRO extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
+        System.out.println("Entrado");
+        if (CDsenha.getText().equals(Confsenha.getText()) )
+        {
+            if(CDemail.getText().equals("") || CDnome.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(null, "Algum campo está vazio");
+            }
+            else
+            {
+                cadastrarServico();
+                new view().setVisible(true);
+                setVisible(false);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Senha Não está igual ");
+        }      
+            
+    }//GEN-LAST:event_cadastrarActionPerformed
+
     private void CDemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CDemailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CDemailActionPerformed
@@ -190,10 +251,45 @@ public class IntCADASTRO extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CDnomeActionPerformed
 
-    private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
-new view().setVisible(true);          // TODO add your handling code here:
-    }//GEN-LAST:event_cadastrarActionPerformed
+    private void SaidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaidaMouseClicked
+        setVisible(false);
+        new view().setVisible(true);
+    }//GEN-LAST:event_SaidaMouseClicked
 
+    
+    public void cadastrarServico()
+    {
+        System.out.println("["+CDnome.getText()+"]");
+        // Ajustar nome das colunas se necessário
+        String sql = "INSERT INTO "+table+" (email, senha, usuar) VALUES "
+                + "(?, ?, ?)";
+        // Incremento
+        try(PreparedStatement pst = conn.prepareStatement(sql))
+        {
+           pst.setString(1, CDemail.getText()); // Primeiro "?" é o nome de serviço
+           pst.setString(2, CDsenha.getText()); // Segundo "?" é a descrição
+           pst.setString(3, CDnome.getText()); // Terceiro "?" é a Referência
+
+            int rowsAffected = pst.executeUpdate();
+
+            if(rowsAffected>0)
+            {
+                System.out.println("Planilha inserida com sucesso");
+                JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso");
+            } 
+            else
+            {
+                System.out.println("Erro ao inserir.");
+            }
+        } 
+        catch (SQLException e)
+        {
+            System.out.println("Erro ao inserir Tabela");
+            e.printStackTrace();
+        }
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -234,6 +330,7 @@ new view().setVisible(true);          // TODO add your handling code here:
     private javax.swing.JTextField CDnome;
     private javax.swing.JPasswordField CDsenha;
     private javax.swing.JPasswordField Confsenha;
+    private javax.swing.JLabel Saida;
     private javax.swing.JButton cadastrar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
