@@ -23,6 +23,7 @@ import java.time.format.DateTimeFormatter;
 // iText
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.io.image.*;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.borders.*;
@@ -43,9 +44,9 @@ public class TelaCarregamento extends javax.swing.JFrame {
     // Variáveis Banco de dados - PostGreSQL
     private static final String table = "acic_table";
     private static final String database = "acicDATA";
-    private static final String URL = "jdbc:postgresql://localhost:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
+    private static final String URL = "jdbc:postgresql://acicdata123.cjocmm6gomz5.us-east-2.rds.amazonaws.com:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
     private static final String USER = "postgres";  // Usuário do banco
-    private static final String PASSWORD = "123";
+    private static final String PASSWORD = "leoACIC10.";
     /**
      * Creates new form TelaPrincipal
      */
@@ -155,7 +156,7 @@ public class TelaCarregamento extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Baixar");
+        jButton1.setText("Gerar PDF");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -1052,7 +1053,7 @@ public class TelaCarregamento extends javax.swing.JFrame {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH_mm_ss");
         String dataHoraFormatada = c.format(formatador);
         String dest = gacicFolder+"/relatorio_"+dataHoraFormatada+".pdf";
-        String destImg = "src/imagens/aciclog.png";
+        String destImg = "imagens/aciclog.png";
         String sql = "SELECT id, service, descri, data FROM " + table + " WHERE id_cad="+Integer.valueOf(view.iddd);
 
         // Cria um documento PDF
@@ -1102,6 +1103,7 @@ public class TelaCarregamento extends javax.swing.JFrame {
             System.out.println("PDF criado com sucesso em: " + dest);
             JOptionPane.showMessageDialog(null, "Relatório Salvo em "+dest);
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e+" "+e.getMessage());
             e.printStackTrace();
         }
     }

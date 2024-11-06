@@ -40,9 +40,9 @@ public class TelaLista extends javax.swing.JFrame {
     // Variáveis Banco de dados - PostGreSQL
     private static final String table = "acic_events";
     private static final String database = "acicDATA";
-    private static final String URL = "jdbc:postgresql://localhost:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
+    private static final String URL = "jdbc:postgresql://acicdata123.cjocmm6gomz5.us-east-2.rds.amazonaws.com:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
     private static final String USER = "postgres";  // Usuário do banco
-    private static final String PASSWORD = "123";
+    private static final String PASSWORD = "leoACIC10.";
     /**
      * Creates new form TelaPrincipal
      */
@@ -203,7 +203,7 @@ public class TelaLista extends javax.swing.JFrame {
                                     .addComponent(name_us_event, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Saida, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Saida, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21))
         );
         jPanel2Layout.setVerticalGroup(
@@ -384,7 +384,7 @@ public class TelaLista extends javax.swing.JFrame {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH_mm_ss");
         String dataHoraFormatada = c.format(formatador);
         String dest = gacicFolder+"/evento_"+dataHoraFormatada+".pdf";
-        String destImg = "src/imagens/aciclog.png";
+        String destImg = "imagens/aciclog.png";
         String sql = "SELECT id, nome FROM " + table + " WHERE id_cad="+Integer.valueOf(view.iddd);
 
         // Cria um documento PDF

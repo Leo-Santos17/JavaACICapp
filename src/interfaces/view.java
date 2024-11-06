@@ -26,9 +26,9 @@ public class view extends javax.swing.JFrame {
     public static String idddd;
     private static final String table = "acic_cads";
     private static final String database = "acicDATA";
-    private static final String URL = "jdbc:postgresql://localhost:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
+    private static final String URL = "jdbc:postgresql://acicdata123.cjocmm6gomz5.us-east-2.rds.amazonaws.com:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
     private static final String USER = "postgres";  // Usuário do banco
-    private static final String PASSWORD = "123";
+    private static final String PASSWORD = "leoACIC10.";
 
     /**
      * Creates new form view

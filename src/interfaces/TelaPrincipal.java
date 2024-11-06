@@ -23,9 +23,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variáveis Banco de dados - PostGreSQL
     private static final String table = "acic_table";
     private static final String database = "acicDATA";
-    private static final String URL = "jdbc:postgresql://localhost:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
+    private static final String URL = "jdbc:postgresql://acicdata123.cjocmm6gomz5.us-east-2.rds.amazonaws.com:5432/"+database;  // URL do banco (Não altere se deixar sistema local)
     private static final String USER = "postgres";  // Usuário do banco
-    private static final String PASSWORD = "123";
+    private static final String PASSWORD = "leoACIC10.";
     /**
      * Creates new form TelaPrincipal
      */
@@ -373,10 +373,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
                int idValue = Integer.parseInt(idValueSTR);
                atualizarCadastro(idValue);
             } catch(Exception e) {
-                System.out.println("Erro Botão");
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Insira valor válido");
             }
        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Selecione um campo");
+        }
     }//GEN-LAST:event_atualizarActionPerformed
 
     private void TBservicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBservicosMouseClicked
